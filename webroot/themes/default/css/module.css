@@ -1,0 +1,73 @@
+
+.body-bg{background: url(images/top-bg.png) no-repeat center 0;}
+
+/*-------- 文字列表 --------*/
+.txt-list-a a{background-position:0 6px;padding-left:12px;}
+.txt-list-a .date{color:#999;font-size:11px;padding-left:5px;font-family: Arial;}
+
+/*-------- 图片列表 --------*/
+ .per20 li{width:19.9%;}
+ .per25 li{width:24.8%;}
+ .per33 li{width:33.1%;}
+ .per50 li{width:49.9%;height:117px;}
+ .w-133{width:133px;}
+ .img-list .lh-26{text-align:center;}
+
+/*-------- 页头 --------*/
+.logo{display:block;width:200px;height:50px;}
+.top-bar .f-r{margin-top:18px;}
+.top-bar .tel{color:#247dba;font-family:Arial;font-size:18px;line-height:26px;margin-right:10px;}
+.notice-us,.top-bar .tel,.top-bar .qq,.top-bar .qq2{float:left;margin-left:5px;display:inline;}
+.top-bar .qq,.top-bar .qq2{font-family:Arial;color:#fff;font-size:14px;padding:8px 14px 5px 27px;}
+.top-bar .qq{background-position:0 -50px;}
+.top-bar .qq2{background-position:0 2px;}
+.notice-us{background-position:0 -99px;padding:7px 25px 6px 10px;margin-left:6px;color:#fff;}
+.notice-us a{color:#fff;font-size:12px;}
+/*导航*/
+.nav{margin-top:5px;}
+.nav li{float:left;width:98px;line-height:38px;font-size:14px;text-align:center;}
+.nav .nav-a{float:left;width:115px;line-height:38px;font-size:14px;}
+.nav .nav-a:hover{background-position:14px -146px;color:#fff;}
+.nav .now .nav-a{color:#fff;background-position:14px -196px;} 
+/*-------- @end 页头 --------*/
+
+
+/*-------- 圆角样式 --------*/
+.box-hd{position:relative;}
+.box-hd,.box-hd .left,.box-hd .right,.box-hd .left2,.box-hd .right2,.box-hd .center{height:33px;}
+.box-hd .left{width:8px;position:absolute;left:0;top:0;background-position:0 0;}
+.box-hd .left2{width:8px;position:absolute;left:0;top:0;background-position:-1px -80px;}
+.box-hd .center{margin:0 8px;background-position:0 0;}
+.box-hd .right{width:8px;position:absolute;right:0;top:0;background-position:-31px 0;}
+.box-hd .right2{width:8px;position:absolute;right:0;top:0;background-position:-31px -80px;}
+
+.box-fd{position:relative;}
+.box-fd,.box-fd .left,.box-fd .center,.box-fd .right{height:8px;}
+.box-fd .left{width:8px;position:absolute;left:0;top:0;background-position:0 -54px;}
+.box-fd .center{margin:0 8px;background-position:0 -83px;}
+.box-fd .right{width:8px;position:absolute;right:0;top:0;background-position:-31px -54px;}
+
+.box-bd{border-left:1px solid #94cfe4;border-right:1px solid #94cfe4;}
+
+.h-32{height:32px;}
+
+/*线*/
+.line2{border-top:1px solid #e2e2e2;height:3px;_height:1px;background-color:#f1f1f1;}
+
+/**** 分页 ******/
+.w-280{width:700px;}
+.page a{ margin:0 5px; border:1px solid #ddd; padding:2px 6px; color:#666; line-height:28px;}
+/*.page a:link{color:#2266BB;}
+.page a:visited{border:1px solid #ddd;color:#660066;}
+.page a:hover{border:1px solid #2266BB;}
+.page a:active{color:#2266BB;}*/
+.page a.now{ background-color:#e4f6fc; color:#5394aa;border:1px solid #bfdfea;font-weight:bold;}
+.page ul li{ float:left;}
+
+/**** 内容页 ******/
+.content-wrap a{color:#06C;}
+.content-wrap a:hover{color:#f30;}
+.mar-b-8{margin-bottom:8px;}
+
+.cont-txt{font-size:14px;color:#333;}
+.cont-txt p{line-height:24px;}

@@ -1,0 +1,6 @@
+#
+# robots.txt for iCC
+#
+User-agent: * 
+Disallow: /admin/
+Disallow: /index.php?r=admin*
