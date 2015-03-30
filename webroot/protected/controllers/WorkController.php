@@ -108,16 +108,11 @@ class WorkController extends XAdminBase
      */
     public function actionDealdata()
     {
-        $type = $this->_gets->getPost('type');
-        $screen = $this->_gets->getPost('screen');
-        $panel = $this->_gets->getPost('panel');
-        $index = $this->_gets->getPost('index');
-        $id = $this->_gets->getPost('id');
-        $data = $this->_gets->getPost('data');
-        $post_data = $_POST;
+        $type = $_REQUEST('type');
         //print_r($post_data);
         switch ($type){
         	case 'get_daily_data':
+                $id = $this->_gets->getPost('id');
         	    $model = Daily::model()->find("id=".$id);
         	    if(!$model){
         	        parent::error('fail to get data');
@@ -126,6 +121,12 @@ class WorkController extends XAdminBase
         	    echo $model->report_info;
         	    break;
         	case 'get_plan_data':
+        	    $start = $this->_gets->getQuery('start');
+        	    $end = $this->_gets->getQuery('end');
+        	    $criteria = new CDbCriteria();
+        	    $criteria->addCondition('user_id='.$this->_adminUserId);
+        	    $criteria->addCondition('start<'.$start);
+        	    $model = Plan::model()->findAll($criteria);
         	    header('Content-Type:application/json; charset=utf-8');
         	    echo json_encode(['a'=>'b']);
         	    break;

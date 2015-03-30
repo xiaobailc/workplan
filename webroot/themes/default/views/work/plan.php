@@ -40,12 +40,12 @@
 			eventLimit: true,
 			weekNumbers: true,
 			dayClick: function() {
-		        alert('a day has been clicked!');
+				var moment = $('#calendar').fullCalendar('getDate');
+			    alert("The current date of the calendar is " + moment.format());
+		        //alert('a day has been clicked!');
 		    },
 		    events: {
-				url: webUrl+currentScript+'?r=work/dealdata',
-				type:'POST',
-				data:{type:"get_plan_data"},
+				url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data',
 				error: function() {
 					$('#script-warning').show();
 				}
