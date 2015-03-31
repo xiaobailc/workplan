@@ -16,7 +16,7 @@
 function jumpurl(){  
   location='<?php echo $redirect?>';  
 }  
-setTimeout('jumpurl()',2000);  
+//setTimeout('jumpurl()',2000);  
 </script>  
 </body>
 </html>
