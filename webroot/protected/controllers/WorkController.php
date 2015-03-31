@@ -29,13 +29,14 @@ class WorkController extends XAdminBase
         }
         $info_exist = Daily::model()->find('date_time=\''.date('Y-m-d').'\'');
         $daily_exist = ($info_exist->status==1) ? true : false;
-        if(!$info_exist)
+        if(!$info_exist){
             $this->render('daily_edit',array('model'=>$info,'daily_exist'=>$daily_exist));
-        else if(!$daily_exist)    
+        }else if(!$daily_exist) {
             $this->redirect(array('dailyedit','id'=>$info_exist->id));
-        else 
-            $this->error("当日日报已经提交！");
-            //$this->redirect(array('dailyinfo','id'=>$info_exist->id));
+        }else {
+            //$this->error("当日日报已经提交！");
+            $this->redirect(array('dailyinfo','id'=>$info_exist->id));
+        }
     }
     
     public function actionDailyEdit($id=0){
