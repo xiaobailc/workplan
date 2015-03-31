@@ -42,6 +42,7 @@ class XAdminBase extends Controller
     
     protected function beforeAction($action){
     	$name = $this->getId().'/'.$action->id.'?'.Yii::app()->getRequest()->queryString;
+    	if(strpos($name, 'default/index')!==false) return true;
     	if(!$this->_check($name)){
     		self::error("没有权限浏览此页面或执行此操作，请联系管理员开通！",403);
     	}
