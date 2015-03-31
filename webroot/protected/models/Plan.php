@@ -7,7 +7,6 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $title
- * @property string $content
  * @property integer $allDay
  * @property string $start
  * @property string $end
@@ -34,14 +33,14 @@ class Plan extends XBaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, title, start, end, url, className, create_time', 'required'),
+			array('user_id, title, start, create_time', 'required'),
 			array('user_id, allDay, editable', 'numerical', 'integerOnly'=>true),
-			array('title', 'length', 'max'=>50),
-			array('content, url', 'length', 'max'=>200),
+			array('title, url', 'length', 'max'=>200),
 			array('className', 'length', 'max'=>20),
+			array('end', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, title, content, allDay, start, end, url, className, editable, create_time', 'safe', 'on'=>'search'),
+			array('id, user_id, title, allDay, start, end, url, className, editable, create_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,7 +64,6 @@ class Plan extends XBaseModel
 			'id' => 'ID',
 			'user_id' => 'User',
 			'title' => 'Title',
-			'content' => 'Content',
 			'allDay' => 'All Day',
 			'start' => 'Start',
 			'end' => 'End',
@@ -97,7 +95,6 @@ class Plan extends XBaseModel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('content',$this->content,true);
 		$criteria->compare('allDay',$this->allDay);
 		$criteria->compare('start',$this->start,true);
 		$criteria->compare('end',$this->end,true);

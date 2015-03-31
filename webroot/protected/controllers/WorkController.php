@@ -108,7 +108,7 @@ class WorkController extends XAdminBase
      */
     public function actionDealdata()
     {
-        $type = $_REQUEST('type');
+        $type = $_REQUEST['type'];
         //print_r($post_data);
         switch ($type){
         	case 'get_daily_data':
@@ -125,11 +125,46 @@ class WorkController extends XAdminBase
         	    $end = $this->_gets->getQuery('end');
         	    $criteria = new CDbCriteria();
         	    $criteria->addCondition('user_id='.$this->_adminUserId);
-        	    $criteria->addCondition('start<'.$start);
-        	    $model = Plan::model()->findAll($criteria);
+        	    $criteria->addCondition("start < '$start' and end > '$end'");
+        	    $criteria->addCondition("start > '$start' and start < '$end'", 'OR');
+        	    $models = Plan::model()->findAll($criteria);
+        	    $output_arrays = [];
+        	    foreach ($models as $model){
+        	        $array = $model->attributes;
+        	        unset($array['allDay']);
+        	        unset($array['editable']);
+        	        unset($array['start']);
+        	        unset($array['end']);
+        	        $array['allDay'] = $model->allDay?true:false;
+        	        if($model->editable) $array['editable'] = true;
+        	        $array['start'] = $array['allDay']? substr($model->start, 0,strpos($model->start, ' ')):$model->start;
+        	        if($model->end){
+        	           $array['end'] = $array['allDay']? substr($model->end, 0,strpos($model->end, ' ')):$model->end;
+        	        }
+        	        $output_arrays[] = $array;
+        	    }
         	    header('Content-Type:application/json; charset=utf-8');
-        	    echo json_encode(['a'=>'b']);
+        	    echo json_encode($output_arrays);
         	    break;
+    	    case 'post_plan_data':
+    	        $title = $this->_gets->getPost('title');
+    	        $start = $this->_gets->getPost('start');
+    	        $end = $this->_gets->getPost('end');
+    	        $allDay = $this->_gets->getPost('allDay');
+    	        $model = new Plan();
+    	        $model->user_id = $this->_adminUserId;
+    	        $model->title = $title;
+    	        $model->start = $start;
+    	        $model->end = $end;
+    	        $model->allDay = $allDay;
+    	        if($model->insert()){
+    	            $res = ['success'=>true];
+    	        }else{
+    	            parent::error('system error',0,'',true);
+    	        }
+    	        header('Content-Type:application/json; charset=utf-8');
+    	        echo json_encode($res);
+    	        break;
         	default:
         	    parent::error('params error',0,'',true);
         	    break;

@@ -12,50 +12,27 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/font-awesome/css/font-awesome.min.css">
+
 <link rel="stylesheet" type="text/css" href='<?php echo $this->_baseUrl?>/static/admin/css/common.css'>
 
 <link rel="stylesheet" type="text/css" href='<?php echo $this->_baseUrl?>/static/lib/fullcalendar/fullcalendar.css' />
 <link rel="stylesheet" type="text/css" href='<?php echo $this->_baseUrl?>/static/lib/fullcalendar/fullcalendar.print.css' media='print' />
+<link rel="stylesheet" type="text/css" href='<?php echo $this->_baseUrl?>/static/lib/datetimepicker/css/bootstrap-datetimepicker.min.css' />
+
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/fullcalendar/lib/moment.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/fullcalendar/fullcalendar.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/fullcalendar/lang-all.js" ></script>
+<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" ></script>
 
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery.form.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/admin/js/base.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/bootstrap/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/validationEngine/jquery.validationEngine.min.js" ></script>
+<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/bootbox.js" ></script>
 
 <script>
-	$(document).ready(function() {
-		$('#calendar').fullCalendar({
-			header: {
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,agendaWeek,agendaDay'
-			},
-			defaultDate: '<?php echo date('Y-m-d')?>',
-			lang: 'zh-cn',
-			editable: true,
-			eventLimit: true,
-			weekNumbers: true,
-			dayClick: function() {
-				var moment = $('#calendar').fullCalendar('getDate');
-			    alert("The current date of the calendar is " + moment.format());
-		        //alert('a day has been clicked!');
-		    },
-		    events: {
-				url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data',
-				error: function() {
-					$('#script-warning').show();
-				}
-			},
-			loading: function(bool) {
-				$('#loading').toggle(bool);
-			}
-		});
-		
-	});
+	
 </script>
 <style>
     #script-warning {
@@ -87,7 +64,7 @@
     <div id="contentHeader">
     	<div class="searchArea">
     		<p class="" >
-    			<a href="<?php echo $this->createUrl('dailycreate')?>" class="btn btn-success btn-sm">新建工作计划</a>
+    			<a href="<?php echo $this->createUrl('plancreate')?>" class="btn btn-success btn-sm">新建工作计划</a>
     		</p>
     		<div class="right">
     		</div>
@@ -96,4 +73,132 @@
     <div id='script-warning'>载入失败!</div>
     <div id='loading'>载入中...</div>
     <div id='calendar'></div>
+    <!-- 新建工作计划框 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalTitle"></h4>
+      </div>
+      <div class="modal-body">
+       <form>
+      <div class="form-group">
+        <label for="plantitle">工作计划</label>
+        <textarea class="form-control" id="InputTitle"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="planstart">开始时间</label>
+          <div class="datetimepicker" class="input-append date">
+            <input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="InputStart"></input>
+            <span class="add-on">
+              <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o">
+              </i>
+            </span>
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="planstart">结束时间</label>
+          <div class="datetimepicker" class="input-append date">
+            <input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="InputEnd"></input>
+            <span class="add-on">
+              <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o">
+              </i>
+            </span>
+          </div>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="allDay" id="InputAllDay"> 全天计划
+        </label>
+      </div>
+    </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="plansubmit()">提交</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$(function() {
+	function createplan(moment){
+		$('#myModal').modal();
+		$('#myModalTitle').html(moment.format());
+		$('#InputTitle').val('');
+		$('#InputStart').val(moment.format()+' 09:00:00');
+		$('#InputEnd').val('');
+		$('#InputAllDay').removeAttr("checked");
+	}
+	
+	$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,agendaWeek,agendaDay'
+		},
+		defaultDate: '<?php echo date('Y-m-d')?>',
+		lang: 'zh-cn',
+		//editable: true,
+		eventLimit: true,
+		weekNumbers: true,
+		/*dayClick: function(date, jsEvent, view) {
+	        alert('Clicked on: ' + date.format());
+	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+	        alert('Current view: ' + view.name);
+	        // change the day's background color just for fun
+	        $(this).css('background-color', 'red');
+	    },*/
+		dayClick: function(data,jsEvent,view) {
+			//var moment = $('#calendar').fullCalendar('getDate');
+			//小于当日-返回
+			//大于等于当日-新建工作计划
+		    //alert("The current date of the calendar is " + moment.format());
+		    createplan(data);
+	    },
+	    events: {
+			url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data',
+			error: function() {
+				$('#script-warning').show();
+			}
+		},
+		loading: function(bool) {
+			$('#loading').toggle(bool);
+		}
+	});
+
+	$('.datetimepicker').datetimepicker({
+	      language: 'pt-BR'
+	});
+});
+
+function plansubmit(){
+	if($('#InputTitle').val()=='' || $('#InputStart').val()==''){
+		alert('计划不能为空');
+		return;
+	}
+	$.ajax({
+		url: webUrl+currentScript+'?r=work/dealdata',
+		data: {
+			type:"post_plan_data",
+			title:$('#InputTitle').val(),
+			start:$('#InputStart').val(),
+			end:$('#InputEnd').val(),
+			allDay:$('#InputAllDay').is(':checked')
+		},
+		type: 'POST',
+		dataType: 'text',
+		success: function(data, textStatus, jqXHR) {
+			//bootbox.alert("<br /><pre>"+data+"</pre>");
+			$('#myModal').modal('hide');
+			location.href = webUrl+currentScript+'?r=work/plan';
+			return;
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert((jqXHR.responseJSON ? jqXHR.responseJSON.message : 'Error') + '\n\n' + jqXHR.status + (errorThrown ? ' ' + errorThrown : ''));
+		}
+	});
+}
+</script>
 <?php $this->renderPartial('/_include/footer');?>
