@@ -61,15 +61,7 @@
 <body>
 <div id="append_parent"></div>
 <div class="" id="cpcontainer">
-    <div id="contentHeader">
-    	<div class="searchArea">
-    		<p class="" >
-    			<a href="<?php echo $this->createUrl('plancreate')?>" class="btn btn-success btn-sm">新建工作计划</a>
-    		</p>
-    		<div class="right">
-    		</div>
-    	</div>
-    </div>
+
     <div id='script-warning'>载入失败!</div>
     <div id='loading'>载入中...</div>
     <div id='calendar'></div>
@@ -143,18 +135,9 @@ $(function() {
 		//editable: true,
 		eventLimit: true,
 		weekNumbers: true,
-		/*dayClick: function(date, jsEvent, view) {
-	        alert('Clicked on: ' + date.format());
-	        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-	        alert('Current view: ' + view.name);
-	        // change the day's background color just for fun
-	        $(this).css('background-color', 'red');
-	    },*/
 		dayClick: function(data,jsEvent,view) {
-			//var moment = $('#calendar').fullCalendar('getDate');
 			//小于当日-返回
 			//大于等于当日-新建工作计划
-		    //alert("The current date of the calendar is " + moment.format());
 		    createplan(data);
 	    },
 	    events: {

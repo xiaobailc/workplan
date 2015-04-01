@@ -12,11 +12,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href='<?php echo $this->_baseUrl?>/static/admin/css/common.css'>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/ztree/css/zTreeStyle/zTreeStyle.css" >
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery.form.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/admin/js/base.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/bootstrap/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/validationEngine/jquery.validationEngine.min.js" ></script>
+<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/ztree/js/jquery.ztree.core-3.5.js" ></script>
 </head>
 <body>
 <div id="append_parent"></div>

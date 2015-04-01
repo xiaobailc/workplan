@@ -36,7 +36,7 @@ return array(
 			'servers' => array( array('host' => '127.0.0.1', 'port' => 11211)),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=127.0.0.1;dbname=workplan',
+			'connectionString' => 'mysql:host=192.168.75.19;dbname=workplan',
 			'emulatePrepare' => true,
 			'enableParamLogging' => true,
 			'enableProfiling'=>true,
