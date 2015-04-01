@@ -19,7 +19,7 @@
 			<th style="width: 175px" >事项</th>
 			<th style="" >内容</th>
 			<th style="width: 125px" >结果</th>
-			<th style="width: 200px" >时间</th>
+			<th style="width: 250px" >时间</th>
 			<th style="width: 100px" >操作</th>
 		</tr>
 	</thead>
