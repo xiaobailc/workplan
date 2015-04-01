@@ -8,14 +8,30 @@
     <div class="search right"> </div>
   </div>
 </div>
+<h3><?php echo $model->date_time;?>日报</h3>
+<p>员工：<?php echo $model->user_name;?></p>
+<table class="table table-bordered table-condensed">
+	<thead>
+		<tr class="active">
+			<th style="width: 175px" >事项</th>
+			<th style="" >内容</th>
+			<th style="width: 125px" >结果</th>
+			<th style="width: 100px" >开始时间</th>
+			<th style="width: 100px" >结束时间</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php foreach ($report_arr as $value):?>
+		<tr>
+<?php foreach ($value as $item):?>
+			<td><?php echo $item?></td>
+<?php endforeach;?>
+		</tr>
+<?php endforeach;?>
+	</tbody>
+</table>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
-    <tr>
-        <td class="tb_title"><h3><?php echo date('Y-m-d');?>日报</h3></td>
-    </tr>
-    <tr>
-    <td><pre style="font-size: 14px"><?php echo $model->report_info;?></pre></td>
-    </tr>
     <tr><td class="tb_title">添加评论:</td></tr>
     <tr>
         <td>

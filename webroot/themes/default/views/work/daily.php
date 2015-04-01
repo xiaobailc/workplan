@@ -17,24 +17,22 @@
 <table class="table table-bordered table-condensed">
 	<thead>
 		<tr class="active">
-			<th style="width: 150px" >日期</th>
 			<th style="width: 100px" >星期</th>
-			<th style="" >日报内容</th>
+			<th style="width: 150px" >日期</th>
 			<th style="width: 150px" >状态</th>
-			<th style="width: 150px" >操作</th>
+			<th style="" >操作</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php foreach ($models as $index => $model):?>
 		<tr>
-			<td><?php echo $model->date_time;?></td>
 			<td><?php
 			$week = ['日','一','二','三','四','五','六'];
 			$num = date('w',strtotime($model->date_time));
 			echo "星期".$week[$num];
 			?></td>
 			<td ><a href="<?php echo $this->createUrl('dailyinfo',array('id'=>$model->id))?>">
-			<?php echo substr($model->report_info,0,20).'...';?>
+			<?php echo $model->date_time;?>
 			</a></td>
 			<td><?php echo $model->status==0?"未提交":'已提交';?></td>
 			<td class="group-btn">

@@ -16,11 +16,30 @@ class WorkController extends XAdminBase
     
     public function actionDailyCreate(){
         $info = new Daily();
-        if(isset($_POST['Daily'])){
-            $info->attributes = $this->_gets->getPost('Daily');
+        if(isset($_POST['Daily']) || isset($_POST['NewDaily'])){
+            //var_dump($_POST);exit;
+            $info->date_time = $_POST['time_date'];
             $info->user_id = $this->_adminUserId;
             $info->user_name = $this->_adminUserName;
             $info->create_time = time();
+            $report = is_array($_POST['Daily'])?$_POST['Daily']:[];
+            $report_new = is_array($_POST['NewDaily'])?$_POST['NewDaily']:[];
+            $report_info = '';
+            foreach ($report as $inf){
+                $text = implode('|||', $inf);
+                $text = str_replace(',', '，', $text);
+                $text = str_replace('|||', ',', $text);
+                $text = $text."\n";
+                $report_info .= $text;
+            }
+            foreach ($report_new as $newinf){
+                $text = implode('|||', $newinf);
+                $text = str_replace(',', '，', $text);
+                $text = str_replace('|||', ',', $text);
+                $text = $text."\n";
+                $report_info .= $text;
+            }
+            $info->report_info = $report_info;
             if($info->save()){
                 $this->redirect(array('daily'));
             }else{
@@ -34,7 +53,6 @@ class WorkController extends XAdminBase
         }else if(!$daily_exist) {
             $this->redirect(array('dailyedit','id'=>$info_exist->id));
         }else {
-            //$this->error("当日日报已经提交！");
             $this->redirect(array('dailyinfo','id'=>$info_exist->id));
         }
     }
@@ -96,11 +114,19 @@ class WorkController extends XAdminBase
         $criteria->addCondition('daily_id='.$id);
         $criteria->order = 'create_time desc';
         $comment_list = DailyComment::model()->findAll($criteria);
-        
-        $this->render('daily_info',array('model'=>$info,'comm'=>$comment,'commlist'=>$comment_list));
+        $report_info = $info->report_info;
+        $report_tmp = explode("\n", $report_info);
+        $report_arr = [];
+        foreach ($report_tmp as $k){
+            $tmp_arr = explode(',', $k);
+            $report_arr[] = $tmp_arr;
+        }
+        $this->render('daily_info',array('model'=>$info,'report_arr'=>$report_arr,'comm'=>$comment,'commlist'=>$comment_list));
     }
     
     public function actionDailyList(){
+        $c = new CDbCriteria();
+        $c->addCondition('leader_id='.$this->_adminUserId);
         $this->render('daily_list');
     }
     

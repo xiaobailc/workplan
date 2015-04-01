@@ -104,4 +104,11 @@ class Structure extends XBaseModel
 	{
 		return parent::model($className);
 	}
+	
+	/**
+	 * 根据ID递归获取所有下属树结构
+	 * @param unknown $pid
+	 */
+	public function gettree($id){
+	}
 }
