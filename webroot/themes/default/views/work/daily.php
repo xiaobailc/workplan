@@ -41,12 +41,6 @@
 			</td>
 		</tr>
 		<?php endforeach;?>
-		<tr>
-		<td colspan="4">
-		<div class="cuspages right">
-			<?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
-		</div></td>
-	</tr>
 	</tbody>
 </table>
 <?php $this->renderPartial('/_include/footer');?>

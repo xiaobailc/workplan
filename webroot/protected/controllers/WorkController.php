@@ -123,9 +123,32 @@ class WorkController extends XAdminBase
         //$c = new CDbCriteria();
         //$c->addCondition('leader_id='.$this->_adminUserId);
         $m = new Structure();
-        $res = $m->getlower($this->_adminUserId);
+        $modols = $m->findAll('user_id='.$this->_adminUserId);
+        $deep = 100;
+        $id=0;
+        foreach ($modols as $model){
+            if($model->deep < $deep){
+                $deep = $model->deep;
+                $id = $model->id;
+            }
+        }
+        if($id){
+            $result = [];
+            $m->getlower($id,$result);
+        }else{
+            $result = [];
+        }
+        var_dump($result);
+        $output = [];
+        foreach ($result as $item){
+            $array['id'] = $item['id'];
+            $array['name'] = $item['user_name'];
+            $array['pId'] = $item['pid'];
+            $output[] = $array;
+        }
+        $output_str = json_encode($output);
         
-        $this->render('daily_list');
+        $this->render('daily_list',array('zNodes'=>$output_str,'lower'=>$result));
     }
     
     /**

@@ -29,12 +29,12 @@ class Structure extends XBaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, user_id, user_name, pid, department_id', 'required'),
-			array('id, user_id, pid, department_id', 'numerical', 'integerOnly'=>true),
-			array('user_name, acl_ids', 'length', 'max'=>50),
+			array('id, user_id, user_name, pid, department_id, deep', 'required'),
+			array('id, user_id, pid, department_id, deep', 'numerical', 'integerOnly'=>true),
+			array('user_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, user_name, pid, department_id, acl_ids', 'safe', 'on'=>'search'),
+			array('id, user_id, user_name, pid, department_id, deep', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +60,7 @@ class Structure extends XBaseModel
 			'user_name' => 'User Name',
 			'pid' => 'Pid',
 			'department_id' => 'Department',
-			'acl_ids' => 'Acl Ids',
+			'deep' => 'Deep',
 		);
 	}
 
@@ -87,7 +87,7 @@ class Structure extends XBaseModel
 		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('pid',$this->pid);
 		$criteria->compare('department_id',$this->department_id);
-		$criteria->compare('acl_ids',$this->acl_ids,true);
+		$criteria->compare('deep',$this->deep,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,6 +109,17 @@ class Structure extends XBaseModel
 	 * 根据ID递归获取所有下属树结构
 	 * @param unknown $pid
 	 */
-	public function getlower($id){
+	public function getlower($id,&$res=[]){
+	    $items = $this->findAll("pid=".$id);
+	    if(empty($items)){
+	        return;
+	    }
+	    foreach ($items as $item){
+	        $res[] = $item->attributes;
+	        if($item->id){
+	            $this->getlower($item->id,$res);
+	        }
+	    }
+	    return;
 	}
 }
