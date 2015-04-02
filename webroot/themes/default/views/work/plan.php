@@ -81,13 +81,14 @@
       </div>
       <div class="form-group">
         <label for="planstart">开始时间</label>
-          <div class="datetimepicker" class="input-append date">
+        <input type="text" id="InputStart" class="form-control" disabled></input>
+<!--           <div class="datetimepicker" class="input-append date">
             <input data-format="yyyy-MM-dd hh:mm:ss" type="text" id="InputStart"></input>
             <span class="add-on">
               <i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o">
               </i>
             </span>
-          </div>
+          </div> -->
       </div>
       <div class="form-group">
         <label for="planstart">结束时间</label>
@@ -116,12 +117,13 @@
 <script type="text/javascript">
 $(function() {
 	function createplan(moment){
+		var data_time = moment.format();
 		$('#myModal').modal();
-		$('#myModalTitle').html(moment.format());
+		$('#myModalTitle').html(data_time);
 		$('#InputTitle').val('');
-		$('#InputStart').val(moment.format()+' 09:00:00');
+		$('#InputStart').val(data_time);
 		$('#InputEnd').val('');
-		$('#InputAllDay').removeAttr("checked");
+		$('#InputAllDay').attr("checked","checked");
 	}
 	
 	$('#calendar').fullCalendar({
@@ -171,11 +173,16 @@ function plansubmit(){
 			allDay:$('#InputAllDay').is(':checked')
 		},
 		type: 'POST',
-		dataType: 'text',
+		dataType: 'json',
 		success: function(data, textStatus, jqXHR) {
 			//bootbox.alert("<br /><pre>"+data+"</pre>");
-			$('#myModal').modal('hide');
-			location.href = webUrl+currentScript+'?r=work/plan';
+			if(data.success){
+			    $('#myModal').modal('hide');
+			    location.href = webUrl+currentScript+'?r=work/plan';
+			}
+			else{
+				alert(data.success);
+			}
 			return;
 		},
 		error: function(jqXHR, textStatus, errorThrown) {

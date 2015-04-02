@@ -1,10 +1,3 @@
-<?php if (CHtml::errorSummary($model)):?>
-<table id="tips">
-  <tr>
-    <td><div class="erro_div"><span class="error_message"> <?php echo CHtml::errorSummary($model); ?> </span></div></td>
-  </tr>
-</table>
-<?php endif?>
 <style type="text/css">
 .datetimepicker{
 	float:left;
@@ -24,6 +17,7 @@
 		</tr>
 	</thead>
 	<tbody>
+<?php if(!isset($report_info)):?>
 		<tr>
 			<td><input type="text" name="Daily[0][type]" class="validate[required]" size="15"/></td>
 			<td><input type="text" name="Daily[0][content]" class="validate[required]" size="60"/></td>
@@ -42,10 +36,32 @@
 				<button class="btn btn-danger btn-xs confirmSubmit" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
 			</td>
 		</tr>
+<?php else:?>
+<?php foreach ($report_info as $k=>$v):?>
+		<tr>
+			<td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
+			<td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" size="60" value="<?php echo $v['content']?>" /></td>
+			<td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" size="10" value="<?php echo $v['result']?>" /></td>
+			<td>
+			<div class="datetimepicker" class="input-append date">
+                <input data-format="hh:mm" type="text" name="Daily[<?php echo $k?>][timestart]" class="validate[required]" size="5" value="<?php echo $v['timestart']?>" />
+                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span> -
+            </div>
+            <div class="datetimepicker" class="input-append date">
+                - <input data-format="hh:mm" type="text" name="Daily[<?php echo $k?>][timeend]" class="validate[required]" size="5" value="<?php echo $v['timeend']?>" />
+                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            </div>
+			</td>
+			<td class="group-btn">
+				<button class="btn btn-danger btn-xs confirmSubmit" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
+			</td>
+		</tr>
+<?php endforeach;?>
+<?php endif;?>
 		<tr id="submit">
             <td colspan="6">
-            <input type="button" id="addone" value="添加一行" class="btn btn-success btn-sm <?php if($daily_exist) echo 'disabled';?>" tabindex="3" />
-            <input type="submit" id="editsubmit" value="提交" class="btn btn-primary btn-sm <?php if($daily_exist) echo 'disabled';?>" tabindex="3" />
+            <input type="button" id="addone" value="添加一行" class="btn btn-success btn-sm" tabindex="3" />
+            <input type="submit" id="editsubmit" value="提交" class="btn btn-primary btn-sm" tabindex="3" />
             </td>
         </tr>
 	</tbody>
