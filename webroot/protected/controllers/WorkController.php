@@ -120,8 +120,11 @@ class WorkController extends XAdminBase
     }
     
     public function actionDailyList(){
-        $c = new CDbCriteria();
-        $c->addCondition('leader_id='.$this->_adminUserId);
+        //$c = new CDbCriteria();
+        //$c->addCondition('leader_id='.$this->_adminUserId);
+        $m = new Structure();
+        $res = $m->getlower($this->_adminUserId);
+        
         $this->render('daily_list');
     }
     

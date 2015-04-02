@@ -318,7 +318,7 @@ class XAdminBase extends Controller
 	 * @param mixed $ajax 是否为Ajax方式 当数字时指定跳转时间
 	 * @return void
 	 */
-	protected function error($message='',$status=0, $jumpUrl='',$ajax=false) {
+	protected function error($message='',$status=500, $jumpUrl='',$ajax=false) {
 		$this->dispatchJump($message,$status,$jumpUrl,$ajax);
 	}
 	
@@ -359,8 +359,8 @@ class XAdminBase extends Controller
 		}
 		else{
 			throw new CHttpException($status,$message);
-// 			$this->render('/system/error',array('code'=>$status,'message'=>$message));
-// 			exit;
+ 			//$this->render('/system/error',array('code'=>$status,'message'=>$message));
+ 			//exit;
 		}
 	}
 	
