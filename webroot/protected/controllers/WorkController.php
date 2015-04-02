@@ -148,13 +148,14 @@ class WorkController extends XAdminBase
             case 'get_plan_data':
                 $start = $this->_gets->getQuery('start');
                 $end = $this->_gets->getQuery('end');
+                $output_arrays = [];
                 //get plan data
+                /*
                 $criteria = new CDbCriteria();
                 $criteria->addCondition('user_id='.$this->_adminUserId);
                 $criteria->addCondition("start < '$start' and end >= '$start'");
                 $criteria->addCondition("start >= '$start' and start <= '$end'", 'OR');
                 $models = Plan::model()->findAll($criteria);
-                $output_arrays = [];
                 foreach ($models as $model){
                     $array = $model->attributes;
                     unset($array['allDay']);
@@ -168,8 +169,12 @@ class WorkController extends XAdminBase
                     }
                     $output_arrays[] = $array;
                 }
+                */
                 //get daily data
-                $dailys = Daily::model()->findAll("date_time >= '$start' and date_time <= '$end'");
+                $criteria = new CDbCriteria();
+                $criteria->addCondition('user_id='.$this->_adminUserId);
+                $criteria->addCondition("date_time >= '$start' and date_time <= '$end'");
+                $dailys = Daily::model()->findAll($criteria);
                 foreach ($dailys as $daily){
                     $array = json_decode($daily->report_info,true);
                     foreach ($array as $item){

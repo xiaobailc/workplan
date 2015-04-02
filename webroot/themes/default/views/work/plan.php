@@ -137,11 +137,12 @@ $(function() {
 		//editable: true,
 		eventLimit: true,
 		weekNumbers: true,
+		/*
 		dayClick: function(data,jsEvent,view) {
 			//小于当日-返回
 			//大于等于当日-新建工作计划
 		    createplan(data);
-	    },
+	    },*/
 	    events: {
 			url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data',
 			error: function() {

@@ -32,7 +32,7 @@ class Daily extends XBaseModel
 		return array(
 			array('user_id, user_name, report_info, status, date_time, create_time', 'required'),
 			array('user_id, status, create_time', 'numerical', 'integerOnly'=>true),
-			array('user_name', 'length', 'max'=>10),
+			array('user_name', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, user_name, report_info, status, date_time, create_time', 'safe', 'on'=>'search'),
