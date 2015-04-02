@@ -2,16 +2,22 @@
 class WorkController extends XAdminBase
 {
     public function actionDaily(){
-        $keyword = $this->_gets->getQuery('keyword');
-        $criteria =new CDbCriteria;
+        $daily = new Daily();
+        $criteria = new CDbCriteria();
         $criteria->addCondition('user_id='.$this->_adminUserId);
+        $keyword = $this->_gets->getQuery('keyword');
         if($keyword){
             $criteria->addSearchCondition('report_info', $keyword);
         }
         $criteria->order='date_time desc';
-        $models = Daily::model()->findAll($criteria);
+        $count = $daily->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = 20;
+        $criteria->limit = $pages->pageSize;
+        $criteria->offset = $pages->currentPage * $pages->pageSize;
         //print_r($models);
-        $this->render('daily',array('models'=>$models,'keyword'=>$keyword));
+        $models = $daily->findAll($criteria);
+        $this->render('daily',array('models'=>$models,'keyword'=>$keyword,'pagebar' => $pages));
     }
     
     public function actionDailyCreate(){

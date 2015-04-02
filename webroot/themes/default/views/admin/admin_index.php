@@ -6,26 +6,30 @@
 		<p class="left" >
 			<a href="<?php echo $this->createUrl('create')?>" class="btn btn-success btn-sm">添加</a>
 		</p>
-		<div class="search right"> </div>
+		<div class="search right">
+<?php echo CHtml::form('', 'get', array('class'=>'form-inline'));?>
+			<?php echo CHtml::textField('keyword','',array('placeholder'=>'请输用户名','class'=>'form-control input-sm'));?>
+			<input type="submit" value="搜索" class="btn btn-primary btn-sm btn-sm" />
+<?php echo CHtml::endForm();?>
+		</div>
 	</div>
 </div>
 <table class="table table-bordered table-condensed">
 	<thead>
 	<tr class="active">
-		<th style="width: 50px" >ID</th>
-		<th style="width: 125px" >用户 </th>
+		<th style="width: " >用户 </th>
+		<th style="width: 100px" >姓名</th>
 		<th style="width: " >组</th>
 		<th style="width: " >邮箱</th>
-		<th style="width: 150px" >真实姓名</th>
 		<th style="width: 200px" >最后登录</th>
 		<th style="width: 75px" >状态</th>
-		<th style="width: 250px" >操作</th>
+		<th style="width: 200px" >操作</th>
 	</tr>
 	</thead>
 <?php foreach ($datalist as $row):?>
 	<tr class="tb_list">
-		<td ><?php echo $row->id?></td>
 		<td ><?php echo $row->username?></td>
+		<td ><?php echo $row->realname?></td>
 		<td ><?php
 		foreach($this->group_list as $v){
 			$group[$v->id] = $v->group_name;
@@ -38,7 +42,6 @@
 		echo rtrim($result,',');
 		?></td>
 		<td><span ><?php echo $row->email?></span></td>
-		<td ><?php echo $row->realname?></td>
 		<td ><?php echo date('Y-m-d H:i',$row->last_login_time)?></td>
 		<td ><?php echo ($row->status_is=='Y')?'启用':'禁用'?></td>
 		<td >

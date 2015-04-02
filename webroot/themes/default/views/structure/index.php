@@ -103,7 +103,7 @@ function structuresubmit(){
 			id:$('#InputTitle').val(),
 			user_id:$('#selectUser').val(),
 			user_name:$('#selectUser').find("option:selected").text(),
-			leader_id:$('#selectLeader').val()
+			pid:$('#selectLeader').val()
 		},
 		type: 'POST',
 		dataType: 'text',

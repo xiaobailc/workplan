@@ -7,7 +7,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $user_name
- * @property integer $leader_id
+ * @property integer $pid
  * @property integer $department_id
  * @property string $acl_ids
  */
@@ -29,12 +29,12 @@ class Structure extends XBaseModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, user_id, user_name, leader_id, department_id', 'required'),
-			array('id, user_id, leader_id, department_id', 'numerical', 'integerOnly'=>true),
+			array('id, user_id, user_name, pid, department_id', 'required'),
+			array('id, user_id, pid, department_id', 'numerical', 'integerOnly'=>true),
 			array('user_name, acl_ids', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, user_name, leader_id, department_id, acl_ids', 'safe', 'on'=>'search'),
+			array('id, user_id, user_name, pid, department_id, acl_ids', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +58,7 @@ class Structure extends XBaseModel
 			'id' => 'ID',
 			'user_id' => 'User',
 			'user_name' => 'User Name',
-			'leader_id' => 'Leader',
+			'pid' => 'Pid',
 			'department_id' => 'Department',
 			'acl_ids' => 'Acl Ids',
 		);
@@ -85,7 +85,7 @@ class Structure extends XBaseModel
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('user_name',$this->user_name,true);
-		$criteria->compare('leader_id',$this->leader_id);
+		$criteria->compare('pid',$this->pid);
 		$criteria->compare('department_id',$this->department_id);
 		$criteria->compare('acl_ids',$this->acl_ids,true);
 

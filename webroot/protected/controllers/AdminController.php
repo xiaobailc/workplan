@@ -23,11 +23,15 @@ class AdminController extends XAdminBase
 		$group = array();
 		$model = new Admin();
 		$criteria = new CDbCriteria();
-		//$criteria->condition = "status_is='Y'";
 		$criteria->order = 'id DESC';
+		$keyword = $this->_gets->getQuery('keyword');
+		if($keyword){
+		    $criteria->addSearchCondition('realname', $keyword);
+		    $criteria->addSearchCondition('username', $keyword,true,'OR');
+		}
 		$count = $model->count($criteria);
 		$pages = new CPagination($count);
-		$pages->pageSize = 13;
+		$pages->pageSize = 20;
 		$criteria->limit = $pages->pageSize;
 		$criteria->offset = $pages->currentPage * $pages->pageSize;
 		$result = $model->findAll($criteria);

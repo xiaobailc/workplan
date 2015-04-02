@@ -5,9 +5,9 @@ class StructureController extends XAdminBase
         $models = Structure::model()->findAll();
         $output = [];
         foreach ($models as $model){
-            $array['id'] = $model->user_id;
+            $array['id'] = $model->id;
             $array['name'] = $model->user_name;
-            $array['pId'] = $model->leader_id;
+            $array['pId'] = $model->pid;
             $output[] = $array;
         }
         $output_str = json_encode($output);
@@ -26,7 +26,7 @@ class StructureController extends XAdminBase
         $structure = new Structure();
         $structure->user_id = $this->_gets->getPost('user_id');
         $structure->user_name = $this->_gets->getPost('user_name');
-        $structure->leader_id = $this->_gets->getPost('leader_id');
+        $structure->pid = $this->_gets->getPost('pid');
         if($structure->insert()){
             $res = ['success'=>true];
         }else{
