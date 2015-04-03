@@ -3,10 +3,12 @@
 	<h3>日报管理</h3>
 	<div class="searchArea">
 		<p class="left" >
-		<?php if(!$lowerdaily):?>
-			<a href="<?php echo $this->createUrl('dailycreate')?>" class="btn btn-success btn-sm">添加当日日报</a>
-		<?php endif;?>
 			<a href="javascript:history.go(-1)" class="btn btn-success btn-sm">返回上页</a>
+<?php if(!$lowerdaily):?>
+			<a href="<?php echo $this->createUrl('dailycreate')?>" class="btn btn-success btn-sm">添加当日日报</a>
+			<a href="<?php echo $this->createUrl('dailycreate',array('date_time'=>date('Y-m-d',strtotime('-1 day'))))?>" class="btn btn-success btn-sm">添加昨日日报</a>
+			<a href="<?php echo $this->createUrl('dailycreate',array('date_time'=>date('Y-m-d',strtotime('-2 day'))))?>" class="btn btn-success btn-sm">添加前日日报</a>
+<?php endif;?>
 		</p>
 		<div class="right">
 <?php echo CHtml::form('', 'get', array('class'=>'form-inline'));?>

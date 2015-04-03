@@ -32,7 +32,7 @@ class WorkController extends XAdminBase
         $this->render('daily',array('models'=>$models,'keyword'=>$keyword,'pagebar' => $pages,'lowerdaily'=>$lowerdaily));
     }
     
-    public function actionDailyCreate(){
+    public function actionDailyCreate($date_time=''){
         if(isset($_POST['Daily']) || isset($_POST['NewDaily'])){
             $info = new Daily();
             //var_dump($_POST);exit;
@@ -50,10 +50,13 @@ class WorkController extends XAdminBase
                 $this->error("添加失败！");
             }
         }
-        $info_exist = Daily::model()->find('date_time=\''.date('Y-m-d').'\' and user_id='.$this->_adminUserId);
+        if(empty($date_time) || !strtotime($date_time)){
+            $date_time = date('Y-m-d');
+        }
+        $info_exist = Daily::model()->find('date_time=\''.$date_time.'\' and user_id='.$this->_adminUserId);
         $daily_exist = ($info_exist->status==1) ? true : false;
         if(!$info_exist){
-            $this->render('daily_edit');
+            $this->render('daily_edit',array('date_time'=>$date_time));
         }else if(!$daily_exist) {
             $this->redirect(array('dailyedit','id'=>$info_exist->id));
         }else {
