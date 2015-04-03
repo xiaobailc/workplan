@@ -25,7 +25,7 @@
 <?php $i++;endforeach;?>
 		</ul>
 	</div>
-	<div class="logininfo"><span class="welcome"><img src="<?php echo $this->_baseUrl?>/static/admin/images/user_edit.png" align="absmiddle"> 欢迎, <em><?php echo $this->_xsession['_adminUserName']?></em> </span> <a href="<?php echo $this->createUrl('admin/ownerUpdate')?>" target="win">修改密码</a> <a href="<?php echo $this->createUrl('public/logout')?>" target="_top">退出登录</a> <a href="<?php echo Yii::app()->homeUrl?>" target="_blank">前台首页</a></div>
+	<div class="logininfo"><span class="welcome"><img src="<?php echo $this->_baseUrl?>/static/admin/images/user_edit.png" align="absmiddle"> 欢迎, <em><?php echo $this->_xsession['_adminUserName']?></em> </span> <a href="<?php echo $this->createUrl('admin/ownerUpdate')?>" target="win">修改密码</a> <a href="<?php echo $this->createUrl('public/logout')?>" target="_top">退出登录</a></div>
 </div>
 <div class="main" id="main">
 	<div class="mainA">
