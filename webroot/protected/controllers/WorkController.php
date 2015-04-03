@@ -35,7 +35,6 @@ class WorkController extends XAdminBase
     public function actionDailyCreate($date_time=''){
         if(isset($_POST['Daily']) || isset($_POST['NewDaily'])){
             $info = new Daily();
-            //var_dump($_POST);exit;
             $info->date_time = $_POST['time_date'];
             $info->user_id = $this->_adminUserId;
             $info->user_name = $this->_adminUserName;
@@ -47,7 +46,7 @@ class WorkController extends XAdminBase
             if($info->save()){
                 $this->redirect(array('daily'));
             }else{
-                $this->error("添加失败！");
+                $this->error(json_encode($info->errors));
             }
         }
         if(empty($date_time) || !strtotime($date_time)){

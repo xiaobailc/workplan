@@ -5,7 +5,7 @@
 </style>
 <h3><?php echo $date_time;?>日报</h3>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
-<input type="hidden" value="<?php $date_time;?>" name="time_date"/>
+<input type="hidden" value="<?php echo $date_time;?>" name="time_date"/>
 <table class="table table-bordered table-condensed">
 	<thead>
 		<tr class="active">
