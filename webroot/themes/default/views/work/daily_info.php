@@ -39,7 +39,7 @@
         </td>
     </tr>
     <tr>
-        <td><input type="submit" name="editsubmit" value="提交" class="btn btn-primary btn-sm" tabindex="3" /></td>
+        <td><input type="submit" name="editsubmit" value="保存" class="btn btn-primary btn-sm" tabindex="3" /></td>
     </tr>
     <tr><td class="tb_title">评论列表：</td></tr>
 <?php foreach ($commlist as $commitem):?>

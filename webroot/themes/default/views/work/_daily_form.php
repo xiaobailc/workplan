@@ -61,7 +61,7 @@
 		<tr id="submit">
             <td colspan="6">
             <input type="button" id="addone" value="添加一行" class="btn btn-success btn-sm" tabindex="3" />
-            <input type="submit" id="editsubmit" value="提交" class="btn btn-primary btn-sm" tabindex="3" />
+            <input type="submit" id="editsubmit" value="保存" class="btn btn-primary btn-sm" tabindex="3" />
             </td>
         </tr>
 	</tbody>
