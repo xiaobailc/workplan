@@ -173,7 +173,7 @@ class AdminController extends XAdminBase
 			$model->password = empty($password) ? $model->password : md5($password);
 			if ($model->save()) {
 				parent::_adminLogger(array ('catalog' => 'update' , 'intro' => '修改密码:' . $model->username )); //日志
-				XUtils::message('success', '修改完成', $this->createUrl('default/home'));
+				XUtils::message('success', '修改完成', $this->createUrl('admin/ownerUpdate'));
 			}
 		}
 		$this->render('owner_update', array ('model' => $model ));
