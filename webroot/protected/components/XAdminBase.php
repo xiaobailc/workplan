@@ -14,6 +14,7 @@ class XAdminBase extends Controller
 {
     protected $_adminUserId;
     protected $_adminUserName;
+    protected $_adminRealName;
     protected $_adminGroupId;
     protected $_adminPermission;
     protected $_catalog;
@@ -28,6 +29,7 @@ class XAdminBase extends Controller
         }
         $this->_adminUserId = parent::_sessionGet('_adminUserId');
         $this->_adminUserName = parent::_sessionGet('_adminUserName');
+        $this->_adminRealName = parent::_sessionGet('_adminRealName');
         $this->_adminGroupId = parent::_sessionGet('_adminGroupId');
         $this->_adminPermission = parent::_sessionGet('_adminPermission');
         

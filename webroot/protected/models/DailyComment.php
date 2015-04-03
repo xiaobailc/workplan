@@ -31,7 +31,7 @@ class DailyComment extends XBaseModel
 		return array(
 			array('daily_id, user_id, user_name, comment, create_time', 'required'),
 			array('daily_id, user_id, create_time', 'numerical', 'integerOnly'=>true),
-			array('user_name', 'length', 'max'=>20),
+			array('user_name', 'length', 'max'=>50),
 			array('comment', 'length', 'max'=>200),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

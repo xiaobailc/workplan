@@ -35,6 +35,7 @@ class PublicController extends Controller
                     $session = new XSession();
                     $session->set('_adminUserId', $data->id);
                     $session->set('_adminUserName', $data->username);
+                    $session->set('_adminRealName', $data->realname);
                     $session->set('_adminGroupId', $data->group_id);
                     if ($data->group_id == 1)
                         $session->set('_adminPermission', 'adminstrator');

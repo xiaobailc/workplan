@@ -102,7 +102,7 @@ class WorkController extends XAdminBase
         $this->redirect(array('daily'));
     }
     
-    public function actionDailyInfo($id=0,$auth){
+    public function actionDailyInfo($id=0,$auth=''){
         if(empty($id) || !$info = Daily::model()->findByPk($id)){
             $this->error("ID=$id 的数据不存在");
         }
@@ -117,12 +117,12 @@ class WorkController extends XAdminBase
             $comment->attributes = $this->_gets->getPost('DailyComment');
             $comment->daily_id = $id;
             $comment->user_id = $this->_adminUserId;
-            $comment->user_name = $this->_adminUserName;
+            $comment->user_name = $this->_adminRealName;
             $comment->create_time = time();
             if($comment->save()){
-                $this->redirect(array('dailyinfo','id'=>$id));
+                $this->redirect(array('dailyinfo','id'=>$id, 'auth'=>$auth));
             }else{
-                $this->error("添加失败！");
+                $this->error(json_encode($comment->errors));
             }
         }
         $criteria =new CDbCriteria;
