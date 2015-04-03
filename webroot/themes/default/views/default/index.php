@@ -51,7 +51,7 @@ $(document).ready(function(){
 	var navIndex=s.split("_");
 		
 	$(".logo").click(function(){
-		location.href="<?php echo $this->createUrl('work/daily')?>";
+		location.href="<?php echo $this->createUrl('default/index')?>";
 	});
 	$(".nav").find("li:eq("+navIndex[0]+")").addClass("active");
 	var targetLink=$(".menu").find("ul").hide().end()
