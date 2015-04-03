@@ -38,7 +38,7 @@
 			?></td>
 			<td >
 			<?php if($model->status==1):?>
-			<a href="<?php echo $this->createUrl('dailyinfo',array('id'=>$model->id,'auth'=>md5($model->id.$this->_xsession['_adminUserName'].'icntv')))?>" disabled>
+			<a href="<?php echo $this->createUrl('dailyinfo',array('id'=>$model->id,'auth'=>md5($model->id.$this->_xsession['_adminUserName'].'icntv')))?>">
 			<?php echo $model->date_time;?>
 			</a>
 			<?php else :?>
