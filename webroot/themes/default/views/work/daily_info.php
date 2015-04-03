@@ -3,7 +3,7 @@
   <h3>查看日报</h3>
   <div class="searchArea">
     <p class="left" >
-      <a href="<?php echo $this->createUrl('daily')?>" class="btn btn-success btn-sm">返回</a>
+      <a href="javascript:history.go(-1)" class="btn btn-success btn-sm">返回上页</a>
     </p>
     <div class="search right"> </div>
   </div>

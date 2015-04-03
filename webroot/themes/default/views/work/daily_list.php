@@ -3,8 +3,6 @@
 	<h3>下属日报管理</h3>
 	<div class="searchArea">
 		<p class="left" >
-			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('expandAll')">全部展开</button>
-			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('collapseAll')">全部折叠</button>
 		</p>
 		<div class="right">
 		</div>
@@ -20,8 +18,8 @@
   <tr>
     <td class="tb_title">
     <?php echo $low['user_name']?>
-    <a href="<?php echo $this->createUrl('work/daily',array('id'=>$low['id'],'auth'=>md5($low['id'].$this->_xsession['_adminUserName'].'icntv')));?>" class="btn btn-success btn-sm" ">查看日报</a>
-	<a href="#" class="btn btn-success btn-sm" ">查看计划</a>
+    <a href="<?php echo $this->createUrl('work/daily',array('id'=>$low['user_id'],'auth'=>md5($low['user_id'].$this->_xsession['_adminUserName'].'icntv')));?>" class="btn btn-default btn-sm" >查看日报</a>
+    <a href="<?php echo $this->createUrl('work/plan',array('id'=>$low['user_id'],'auth'=>md5($low['user_id'].$this->_xsession['_adminUserName'].'icntv')));?>" class="btn btn-default btn-sm" >查看计划</a>
     </td>
   </tr>
 <?php endforeach;?>

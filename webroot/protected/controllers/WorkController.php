@@ -2,9 +2,21 @@
 class WorkController extends XAdminBase
 {
     public function actionDaily(){
+        $lowerdaily = false;
+        $id = $this->_gets->getQuery('id',false);
+        $auth = $this->_gets->getQuery('auth',false);
+        if($id){
+            if($auth != md5($id.$this->_adminUserName.'icntv')){
+                $id = $this->_adminUserId;
+            }else{
+                $lowerdaily = true;
+            }
+        }else{
+            $id = intval($this->_adminUserId);
+        }
         $daily = new Daily();
         $criteria = new CDbCriteria();
-        $criteria->addCondition('user_id='.$this->_adminUserId);
+        $criteria->addCondition('user_id='.$id);
         $keyword = $this->_gets->getQuery('keyword');
         if($keyword){
             $criteria->addSearchCondition('report_info', $keyword);
@@ -17,7 +29,7 @@ class WorkController extends XAdminBase
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         //print_r($models);
         $models = $daily->findAll($criteria);
-        $this->render('daily',array('models'=>$models,'keyword'=>$keyword,'pagebar' => $pages));
+        $this->render('daily',array('models'=>$models,'keyword'=>$keyword,'pagebar' => $pages,'lowerdaily'=>$lowerdaily));
     }
     
     public function actionDailyCreate(){
@@ -88,15 +100,15 @@ class WorkController extends XAdminBase
         $this->redirect(array('daily'));
     }
     
-    public function actionDailyInfo($id=0){
+    public function actionDailyInfo($id=0,$auth){
         if(empty($id) || !$info = Daily::model()->findByPk($id)){
             $this->error("ID=$id 的数据不存在");
         }
-        elseif($info->user_id != $this->_adminUserId){
+        elseif($auth != md5($id.$this->_adminUserName.'icntv')){
             $this->error("没有权限查看日报");
         }
         elseif($info->status==0){
-            $this->redirect(array('dailyedit','id'=>$id));
+            //$this->redirect(array('dailyedit','id'=>$id));
         }
         $comment = new DailyComment();
         if(isset($_POST['DailyComment'])){
@@ -138,15 +150,14 @@ class WorkController extends XAdminBase
         }else{
             $result = [];
         }
-        var_dump($result);
-        $output = [];
+        /* $output = [];
         foreach ($result as $item){
             $array['id'] = $item['id'];
             $array['name'] = $item['user_name'];
             $array['pId'] = $item['pid'];
             $output[] = $array;
         }
-        $output_str = json_encode($output);
+        $output_str = json_encode($output); */
         
         $this->render('daily_list',array('zNodes'=>$output_str,'lower'=>$result));
     }
@@ -171,6 +182,15 @@ class WorkController extends XAdminBase
             case 'get_plan_data':
                 $start = $this->_gets->getQuery('start');
                 $end = $this->_gets->getQuery('end');
+                $id = $this->_gets->getQuery('id');
+                $auth = $this->_gets->getQuery('auth');
+                if($id){
+                    if($auth != md5($id.$this->_adminUserName.'icntv')){
+                        parent::error('no permission',404,'',true);
+                    }
+                }else{
+                    $id = $this->_adminUserId;
+                }
                 $output_arrays = [];
                 //get plan data
                 /*
@@ -195,7 +215,7 @@ class WorkController extends XAdminBase
                 */
                 //get daily data
                 $criteria = new CDbCriteria();
-                $criteria->addCondition('user_id='.$this->_adminUserId);
+                $criteria->addCondition('user_id='.$id);
                 $criteria->addCondition("date_time >= '$start' and date_time <= '$end'");
                 $dailys = Daily::model()->findAll($criteria);
                 foreach ($dailys as $daily){
@@ -240,6 +260,15 @@ class WorkController extends XAdminBase
     }
     
     public function actionPlan(){
-        $this->render('plan');
+        $id = $this->_gets->getQuery('id',false);
+        $auth = $this->_gets->getQuery('auth',false);
+        if($id){
+            if($auth != md5($id.$this->_adminUserName.'icntv')){
+                $id = $this->_adminUserId;
+            }
+        }else{
+            $id = intval($this->_adminUserId);
+        }
+        $this->render('plan',array('id'=>$id,'auth'=>$auth));
     }
 }

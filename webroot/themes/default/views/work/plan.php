@@ -61,7 +61,14 @@
 <body>
 <div id="append_parent"></div>
 <div class="" id="cpcontainer">
-
+<div id="contentHeader">
+  <div class="searchArea">
+    <p class="left" >
+      <a href="javascript:history.go(-1)" class="btn btn-success btn-sm">返回上页</a>
+    </p>
+    <div class="search right"> </div>
+  </div>
+</div>
     <div id='script-warning'>载入失败!</div>
     <div id='loading'>载入中...</div>
     <div id='calendar'></div>
@@ -144,7 +151,7 @@ $(function() {
 		    createplan(data);
 	    },*/
 	    events: {
-			url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data',
+			url: webUrl+currentScript+'?r=work/dealdata&type=get_plan_data&id=<?php echo $id;?>&auth=<?php echo $auth;?>',
 			error: function() {
 				$('#script-warning').show();
 			}
