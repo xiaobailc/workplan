@@ -23,18 +23,32 @@ class StructureController extends XAdminBase
     }
     
     public function actionEdit(){
-        $structure = new Structure();
-        $structure->user_id = $this->_gets->getPost('user_id');
-        $structure->user_name = $this->_gets->getPost('user_name');
-        $structure->pid = $this->_gets->getPost('pid');
-        if($structure->pid==0){
-            $structure->deep = 1;
-        }else{
-            $res = Structure::model()->find('id='.$structure->pid);
-            $structure->deep = $res->deep+1;
-        }
-        if($structure->insert()){
-            $res = ['success'=>true];
+        $type = $this->_gets->getPost('type');
+        if($type=='new'){
+            $structure = new Structure();
+            $structure->user_id = $this->_gets->getPost('user_id');
+            $structure->user_name = $this->_gets->getPost('user_name');
+            $structure->pid = $this->_gets->getPost('pid');
+            if($structure->pid==0){
+                $structure->deep = 1;
+            }else{
+                $res = Structure::model()->find('id='.$structure->pid);
+                $structure->deep = $res->deep+1;
+            }
+            if($structure->insert()){
+                $res = ['success'=>true];
+            }else{
+                parent::error('insert error',0,'',true);
+            }
+        }elseif($type=='edit'){
+            $id = $this->_gets->getPost('id');
+            $structure = Structure::model()->find('id='.$id);
+            $structure->pid = $this->_gets->getPost('pid');
+            if($structure->update()){
+                $res = ['success'=>true];
+            }else{
+                parent::error('update error',0,'',true);
+            }
         }else{
             parent::error('system error',0,'',true);
         }
