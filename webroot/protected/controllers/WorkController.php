@@ -264,13 +264,6 @@ class WorkController extends XAdminBase
     public function actionPlan(){
         $id = $this->_gets->getQuery('id',false);
         $auth = $this->_gets->getQuery('auth',false);
-        if($id){
-            if($auth != md5($id.$this->_adminUserName.'icntv')){
-                $id = $this->_adminUserId;
-            }
-        }else{
-            $id = intval($this->_adminUserId);
-        }
         $this->render('plan',array('id'=>$id,'auth'=>$auth));
     }
 }
