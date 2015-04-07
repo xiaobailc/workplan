@@ -16,7 +16,7 @@
 		<ul class="nav nav-tabs" role="tablist">
 <?php $i = 0; foreach($menu as $key=>$row):?>
 			<li index="<?php echo $key ?>">
-				<a href="<?php if($key==0){$row['url']='work/daily';} echo $this->createUrl($row['url']) ?>" target="win" >
+				<a href="<?php echo $this->createUrl($row['url']) ?>" target="win" >
 <?php if(false !== strpos($row['tip'], 'fa')):?>
 		<i class="<?php echo $row['tip']?>"></i>
 <?php endif;?>
