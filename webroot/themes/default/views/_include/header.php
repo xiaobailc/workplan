@@ -3,7 +3,7 @@
 <head>
 <title>iCC管理系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta content="icc.com." name="Copyright">
+<meta name="renderer" content="webkit">
 <script>
 	var webUrl = '<?php echo Yii::app()->request->getHostInfo()?>';
 	var staticPath = '<?php echo $this->_baseUrl?>/static/';
