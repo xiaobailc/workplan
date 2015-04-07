@@ -41,10 +41,18 @@
 		</div>
 	</div>
 	<div class="mainB" id="mainB">
-		<iframe src="javascript:void(0)" name="win" id="win" width="100%" frameborder="0" onload="javascript:reSetIframe()"></iframe>
+		<iframe src="javascript:void(0)" name="win" id="win" width="100%" height="100%" frameborder="0"></iframe>
 	</div>
 </div>
 <script type="text/javascript">
+window.onload =window.onresize= function(){winresize();}
+function winresize()
+{
+function $(s){return document.getElementById(s);}
+var D=document.documentElement||document.body,h=D.clientHeight-90,w=D.clientWidth-160;
+ $("main").style.height=h+"px";
+ $("mainB").style.width=w+"px";
+}
 $(document).ready(function(){
 	var s=document.location.hash;
 	if(s==undefined||s==""){s="#0_0";}
@@ -75,16 +83,6 @@ $(document).ready(function(){
 		document.location.hash=$(this).parent().attr("index")+"_"+$(this).attr("index");
 	});
 });
-
-function reSetIframe(){
-    var iframe = document.getElementById("win");
-    try{
-        var bHeight = iframe.contentWindow.document.body.scrollHeight;
-        var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
-        var height = Math.max(bHeight, dHeight);
-        iframe.height = height;
-    }catch (ex){}
-}
 </script>
 </body>
 </html>
