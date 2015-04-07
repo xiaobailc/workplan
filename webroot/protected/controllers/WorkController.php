@@ -161,7 +161,7 @@ class WorkController extends XAdminBase
         }
         $output_str = json_encode($output); */
         
-        $this->render('daily_list',array('zNodes'=>$output_str,'lower'=>$result));
+        $this->render('daily_list',array('lower'=>$result));
     }
     
     /**
