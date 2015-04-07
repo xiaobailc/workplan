@@ -21,10 +21,10 @@
       <?php endif?></td>
   </tr>
   <tr>
-    <td class="tb_title">密码：</td>
+    <td class="tb_title">密码：（为空则不修改）</td>
   </tr>
   <tr >
-    <td ><?php echo $form->textField($model,'password',array('size'=>30, 'maxlength'=>50, 'class'=>'validate[required]')); ?></td>
+    <td ><?php echo $form->textField($model,'password',array('value'=>'', 'size'=>30, 'maxlength'=>50, 'class'=>'')); ?></td>
   </tr>
   <tr>
     <td class="tb_title">邮箱：</td>
