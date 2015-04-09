@@ -95,6 +95,7 @@ var zNodes = <?php echo $zNodes;?>;
 
 $(document).ready(function(){
 	$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+	$.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
 });
 
 function expandNode(type) {

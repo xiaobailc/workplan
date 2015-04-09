@@ -5,9 +5,9 @@ class WorkController extends XAdminBase
         $lowerdaily = false;
         $id = $this->_gets->getQuery('id',false);
         $auth = $this->_gets->getQuery('auth',false);
-        if($id){
+        if($id && $id!=$this->_adminUserId){
             if($auth != md5($id.$this->_adminUserName.'icntv')){
-                $id = $this->_adminUserId;
+                $this->error("没有权限查看日报");
             }else{
                 $lowerdaily = true;
             }
@@ -152,16 +152,18 @@ class WorkController extends XAdminBase
         }else{
             $result = [];
         }
-        /* $output = [];
+        $output = [];
         foreach ($result as $item){
             $array['id'] = $item['id'];
             $array['name'] = $item['user_name'];
             $array['pId'] = $item['pid'];
+            $array['userId'] = $item['user_id'];
+            $array['auth'] = md5($item['user_id'].$this->_adminUserName.'icntv');
             $output[] = $array;
         }
-        $output_str = json_encode($output); */
+        $output_str = json_encode($output); 
         
-        $this->render('daily_list',array('lower'=>$result));
+        $this->render('daily_list',array('lower'=>$result,'zNodes'=>$output_str));
     }
     
     /**
