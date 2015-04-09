@@ -4,7 +4,7 @@
 	<div class="searchArea">
 		<p class="left" >
 			<button type="button" class="btn btn-success btn-sm" onclick="checkDaily()">查看日报</button>
-			<button type="button" class="btn btn-success btn-sm" onclick="checkPlan()">查看计划</button>
+			<button type="button" class="btn btn-success btn-sm" onclick="checkPlan()">查看汇总</button>
 			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('expandAll')">全部展开</button>
 			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('collapseAll')">全部折叠</button>
 		</p>
