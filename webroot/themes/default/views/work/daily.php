@@ -1,6 +1,6 @@
 <?php $this->renderPartial('/_include/header');?>
 <div id="contentHeader">
-	<h3>日报管理</h3>
+	<h3>日报管理-<?php echo $userinfo['realname']?></h3>
 	<div class="searchArea">
 		<p class="left" >
 			<a href="javascript:history.go(-1)" class="btn btn-success btn-sm">返回上页</a>

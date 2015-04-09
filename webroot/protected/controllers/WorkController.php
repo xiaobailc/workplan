@@ -14,6 +14,8 @@ class WorkController extends XAdminBase
         }else{
             $id = intval($this->_adminUserId);
         }
+        $user = Admin::model()->findByPk($id);
+        $user_info = $user->attributes;
         $daily = new Daily();
         $criteria = new CDbCriteria();
         $criteria->addCondition('user_id='.$id);
@@ -29,7 +31,7 @@ class WorkController extends XAdminBase
         $criteria->offset = $pages->currentPage * $pages->pageSize;
         //print_r($models);
         $models = $daily->findAll($criteria);
-        $this->render('daily',array('models'=>$models,'keyword'=>$keyword,'pagebar' => $pages,'lowerdaily'=>$lowerdaily));
+        $this->render('daily',array('userinfo'=>$user_info,'models'=>$models,'keyword'=>$keyword,'pagebar' => $pages,'lowerdaily'=>$lowerdaily));
     }
     
     public function actionDailyCreate($date_time=''){
