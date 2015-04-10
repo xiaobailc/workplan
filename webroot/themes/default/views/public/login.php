@@ -17,7 +17,7 @@
 <div id="login">
   <div class="wrapper">
     <div class="alert error" >&nbsp;</div>
-    <div class="logo"></div>
+    <div class="logo"><h1>ICNTV工作日志系统</h1></div>
     <div class="form">
       <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'login-wrap',
