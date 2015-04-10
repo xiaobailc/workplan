@@ -12,7 +12,7 @@ text-align: center; margin: 1px 200px; padding: 12px; width: 540px; border-radiu
 #login a, #login a:visited, #login a:link { color: #A6B6CE; text-decoration: none; }
 #login a:hover { color: #859BBC; }
 #login p.title { margin: 10px 2px 20px; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; }
-.logo { background: transparent url(../images/logo.png) no-repeat; height: 60px; width: 248px; margin-top: 20px;padding-top:60px;}
+.logo { background: transparent url(../images/logo.png) no-repeat; height: 60px; width: 350px; margin-top: 20px;padding-top:60px;}
 #login .input-text, #login .input-password { border-radius: 3px; border: 2px solid #EEEEEE; margin-bottom: 10px; font-size: 12px; padding: 8px; color: #949494; width: 200px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 #login .verify-code { width: 70px; }
 #login .input-login { background: transparent url("../images/login_button.gif") no-repeat; cursor: pointer; width: 80px; height: 32px; }
