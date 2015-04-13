@@ -37,7 +37,7 @@
             <label for="message-text" class="control-label">设置上级</label>
             <select class="form-control" id="selectLeader">
                 <?php foreach($menus as $index=>$value):?>
-                <option value="<?php echo $value['id']?>" <?php XUtils::selected($value['id'], $parentId);?>><?php echo $value['title_show']?></option>
+                <option value="<?php echo $value['id']?>" <?php XUtils::selected($value['id']);?>><?php echo $value['title_show']?></option>
                 <?php endforeach;?>
             </select>
           </div>
@@ -105,6 +105,9 @@ function expandNode(type) {
 	} else {
 		zTree.expandAll(false);
 	}
+	//var treeObj = $.fn.zTree.getZTreeObj("tree");
+	var nodes = zTree.transformToArray(zTree.getNodes());
+	//alert(nodes);
 }
 
 function addNode(){
