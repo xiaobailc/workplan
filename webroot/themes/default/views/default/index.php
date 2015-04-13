@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
 <head>
-<title>iCC管理系统</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>员工日报管理系统</title>
 <meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/admin/css/manage.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/lib/font-awesome/css/font-awesome.min.css">
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/js/jquery.min.js"></script>

@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>员工日报管理系统</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script>
 	var webUrl = '<?php echo Yii::app()->request->getHostInfo()?>';
 	var staticPath = '<?php echo $this->_baseUrl?>/static/';

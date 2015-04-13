@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="utf-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>登录 - 员工日志管理系统</title>
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_baseUrl?>/static/admin/css/login-style.css" />
 <script type="text/javascript" language="javascript">
