@@ -41,8 +41,7 @@
 <?php else:?>
 <?php foreach ($report_info as $k=>$v):?>
 		<tr>
-			<th class="no"><?php echo $k?></th>
-			<td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
+			<th class="no"><?php echo $k+1?></th>
 			<td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
 			<td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" size="60" value="<?php echo $v['content']?>" /></td>
 			<td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" size="10" value="<?php echo $v['result']?>" /></td>
@@ -63,10 +62,12 @@
 <?php endforeach;?>
 <?php endif;?>
 		<tr id="submit">
-            <td colspan="6">
+            <td colspan="4">
             <input type="button" id="addone" value="添加一行" class="btn btn-success btn-sm" tabindex="3" />
             <input type="submit" id="editsubmit" value="保存" class="btn btn-primary btn-sm" tabindex="3" />
             </td>
+            <td><span id="total_time"></span></td>
+            <td><input type="hidden" value="" /></td>
         </tr>
 	</tbody>
 </table>
@@ -119,6 +120,10 @@ $(function(){
     	    pickSeconds: false
     	});
     });
+    $('.datetimepicker').on('changeDate', function(e) {
+  	  //console.log(e.date.toString());
+  	  //console.log(e.localDate.toString());
+  	});
 });
 
 function removeone(e){

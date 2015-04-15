@@ -31,11 +31,13 @@
 		</tr>
 <?php endforeach;?>
 	</tbody>
+	<!-- 
 	<tfoot>
 	<tr>
 	   <td colspan="4"> </td>
 	   <td colspan="2">累计时间：</td></tr>
 	</tfoot>
+	 -->
 </table>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
