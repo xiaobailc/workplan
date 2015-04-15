@@ -3,12 +3,12 @@
 <div id="contentHeader">
   <h3>数据库管理</h3>
   <div class="searchArea">
-    <ul class="action left" >
-      <li><a href="<?php echo $this->createUrl('query')?>"  class="current"><span>执行SQL</span></a></li>
-      <li><a href="<?php echo $this->createUrl('index')?>"><span>常规管理</span></a></li>
-      <li><a href="<?php echo $this->createUrl('database/export')?>"><span>数据库备份</span></a></li>
-      <li><a href="<?php echo $this->createUrl('database/import')?>"><span>数据库还原</span></a></li>
-    </ul>
+    <p class="left" >
+      <a href="<?php echo $this->createUrl('query')?>"  class="btn btn-info btn-sm">执行SQL</a>
+      <a href="<?php echo $this->createUrl('index')?>" class="btn btn-success btn-sm">常规管理</a>
+      <a href="<?php echo $this->createUrl('database/export')?>" class="btn btn-success btn-sm">数据库备份</a>
+      <a href="<?php echo $this->createUrl('database/import')?>" class="btn btn-success btn-sm">数据库还原</a>
+    </p>
     <div class="search right"> </div>
   </div>
 </div>

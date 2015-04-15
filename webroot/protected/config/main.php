@@ -32,11 +32,10 @@ return array(
 	),
 	'components'=>array(
 		'cache'=>array(
-			'class' => 'CMemCache',
-			'servers' => array( array('host' => '127.0.0.1', 'port' => 11211)),
+			'class' => 'CFileCache',
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=192.168.75.19;dbname=workplan',
+			'connectionString' => 'mysql:host=localhost;dbname=workplan',
 			'emulatePrepare' => true,
 			'enableParamLogging' => true,
 			'enableProfiling'=>true,

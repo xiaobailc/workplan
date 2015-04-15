@@ -4,7 +4,7 @@
   <h3>数据库管理</h3>
   <div class="searchArea">
     <p class="left" >
-      <a href="<?php echo $this->createUrl('index')?>" class="btn btn-success btn-sm">常规管理</a>
+      <a href="<?php echo $this->createUrl('index')?>" class="btn btn-info btn-sm">常规管理</a>
       <a href="<?php echo $this->createUrl('query')?>" class="btn btn-success btn-sm"><span>执行SQL</a>
       <a href="<?php echo $this->createUrl('database/export')?>" class="btn btn-success btn-sm">数据库备份</a>
       <a href="<?php echo $this->createUrl('database/import')?>" class="btn btn-success btn-sm">数据库还原</a>
