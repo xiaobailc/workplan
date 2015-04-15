@@ -37,7 +37,7 @@
       <?php $this->endWidget(); ?>
     </div>
     <br class="clear-fix"/>
-    <div class="copyright">Copyright&copy; <a title="WCPP" target="_blank" href="http://wcpp.icntv.tv">icc.com</a>. All Thrusts Reserved.</div>
+    <div class="copyright">Copyright&copy; <a title="icntv" target="_blank" href="http://www.icntv.tv/">www.icntv.tv</a> 未来电视有限公司 版权所有</div>
   </div>
 </div>
 </body>

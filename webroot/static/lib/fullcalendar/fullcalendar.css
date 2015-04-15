@@ -49,6 +49,10 @@ body .fc { /* extra precedence to overcome jqui */
 	background: #fcf8e3;
 }
 
+.fc-unthemed .fc-past {
+    background: #eee;
+}
+
 .fc-highlight { /* when user is selecting cells */
 	background: #bce8f1;
 	opacity: .3;

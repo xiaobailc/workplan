@@ -9,6 +9,7 @@
 <table class="table table-bordered table-condensed">
 	<thead>
 		<tr class="active">
+			<th style="width: 50px" >编号</th>
 			<th style="width: 175px" >事项</th>
 			<th style="" >内容</th>
 			<th style="width: 125px" >结果</th>
@@ -19,6 +20,7 @@
 	<tbody>
 <?php if(!isset($report_info)):?>
 		<tr>
+			<th class="no">1</th>
 			<td><input type="text" name="Daily[0][type]" class="validate[required]" size="15"/></td>
 			<td><input type="text" name="Daily[0][content]" class="validate[required]" size="60"/></td>
 			<td><input type="text" name="Daily[0][result]" class="validate[required]" size="10"/></td>
@@ -39,6 +41,8 @@
 <?php else:?>
 <?php foreach ($report_info as $k=>$v):?>
 		<tr>
+			<th class="no"><?php echo $k?></th>
+			<td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
 			<td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
 			<td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" size="60" value="<?php echo $v['content']?>" /></td>
 			<td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" size="10" value="<?php echo $v['result']?>" /></td>
@@ -69,6 +73,7 @@
 <?php $form=$this->endWidget(); ?>
 <table style="display:none" id="rowtemplate">
 <tr>
+	<th class="no">NNN</th>
 	<td><input type="text" name="NewDaily[XXX][type]" class="validate[required]" size="15"/></td>
 	<td><input type="text" name="NewDaily[XXX][content]" class="validate[required]" size="60"/></td>
 	<td><input type="text" name="NewDaily[XXX][result]" class="validate[required]" size="10"/></td>
@@ -98,9 +103,15 @@ $(function(){
       pickSeconds: false
     });
     $('#addone').click(function(){
+        var now_no = 0;
+    	$('.table .no').each(function(){
+    		now_no = $(this).text();
+        });
+        now_no = parseInt(now_no)+1;
     	menu_index++;
     	var dom = $("#rowtemplate").children().html();
-    	dom = dom.replace(/XXX/g,menu_index); 
+    	dom = dom.replace(/XXX/g,menu_index);
+    	dom = dom.replace(/NNN/g,now_no);
     	//alert(dom);return;
     	$('#submit').before(dom);
     	$('.datetimepicker').datetimepicker({
@@ -112,6 +123,12 @@ $(function(){
 
 function removeone(e){
 	//alert(1);return;
+	$(e).parent().parent().nextAll().each(function(){
+		if($(this).find('.no').length!=0){
+			var temp_no = $(this).find('.no').text();
+			$(this).find('.no').text(parseInt(temp_no)-1);
+		}
+	});
 	$(e).parent().parent().remove();
 }
 </script>

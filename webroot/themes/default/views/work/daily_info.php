@@ -13,6 +13,7 @@
 <table class="table table-bordered table-condensed">
 	<thead>
 		<tr class="active">
+			<th style="width: 50px" >编号</th>
 			<th style="width: 175px" >事项</th>
 			<th style="" >内容</th>
 			<th style="width: 125px" >结果</th>
@@ -21,14 +22,20 @@
 		</tr>
 	</thead>
 	<tbody>
-<?php foreach ($report_arr as $value):?>
+<?php foreach ($report_arr as $k=>$value):?>
 		<tr>
+		    <th><?php echo $k+1?></th>
 <?php foreach ($value as $item):?>
 			<td><?php echo $item?></td>
 <?php endforeach;?>
 		</tr>
 <?php endforeach;?>
 	</tbody>
+	<tfoot>
+	<tr>
+	   <td colspan="4"> </td>
+	   <td colspan="2">累计时间：</td></tr>
+	</tfoot>
 </table>
 <?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
 <table class="form_table">
