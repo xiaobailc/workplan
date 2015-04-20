@@ -61,7 +61,7 @@ class WorkController extends XAdminBase
         }else if(!$daily_exist) {
             $this->redirect(array('dailyedit','id'=>$info_exist->id));
         }else {
-            $this->redirect(array('dailyinfo','id'=>$info_exist->id));
+            $this->redirect(array('dailyinfo','id'=>$info_exist->id,'auth'=>md5($info_exist->id.$this->_adminUserName.'icntv')));
         }
     }
     

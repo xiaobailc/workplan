@@ -49,7 +49,7 @@
 			<td class="group-btn">
 			<?php if(!$lowerdaily):?>
 				<a class="btn btn-default btn-xs <?php echo $model->status==0?'':'disabled';?>" href="<?php echo $this->createUrl('dailyedit',array('id'=>$model->id))?>"><i class="fa fa-pencil"></i> 编辑</a>
-				<a class="btn btn-info btn-xs confirmSubmit <?php echo $model->status==0?'':'disabled';?>" href="<?php echo $this->createUrl('dailypush',array('id'=>$model->id))?>"><i class="fa fa-trash-o"></i> 提交</a>
+				<a class="btn btn-info btn-xs confirmSubmit <?php echo $model->status==0?'':'disabled';?>" href="<?php echo $this->createUrl('dailypush',array('id'=>$model->id))?>"><i class="fa fa-check"></i> 提交</a>
 			<?php endif;?>
 			</td>
 		</tr>
