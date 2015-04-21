@@ -479,6 +479,15 @@ class XAdminBase extends Controller
 	}
 	
 	/**
+	 * 检测用户是否在组 group_id=N
+	 * @return boolean
+	 */
+	protected function isgroup($group_id){
+	    $group_ids = $this->_adminGroupId;
+	    return (in_array($group_id, explode(',', $group_ids)))?true:false;
+	}
+	
+	/**
 	 * 获取用户组权限ID  array($rules)
 	 * @return array
 	 */

@@ -4,7 +4,8 @@
 	<div class="searchArea">
 		<p class="left" >
 			<button type="button" class="btn btn-success btn-sm" onclick="addNode()">添加组织</button>
-			<button type="button" class="btn btn-success btn-sm" onclick="editNode()">编辑组织</button>
+			<button type="button" class="btn btn-info btn-sm" onclick="editNode()">编辑组织</button>
+			<button type="button" class="btn btn-danger btn-sm" onclick="deleteNode()">删除组织</button>
 			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('expandAll')">全部展开</button>
 			<button type="button" class="btn btn-default btn-sm" onclick="expandNode('collapseAll')">全部折叠</button>
 		</p>
@@ -105,9 +106,7 @@ function expandNode(type) {
 	} else {
 		zTree.expandAll(false);
 	}
-	//var treeObj = $.fn.zTree.getZTreeObj("tree");
 	var nodes = zTree.transformToArray(zTree.getNodes());
-	//alert(nodes);
 }
 
 function addNode(){
@@ -127,12 +126,40 @@ function editNode(){
 	$('#editModal').modal({
 		keyboard:true
 	});
-	//var callbackFlag = $("#callbackTrigger").attr("checked");
-	//zTree.removeNode(treeNode, callbackFlag);
 	$('#editId').val(treeNode.id);
 	$('#editUser').val(treeNode.name);
 	$('#editLeader').val(treeNode.pId);
 	
+}
+
+function deleteNode(){
+	var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+	nodes = zTree.getSelectedNodes(),
+	treeNode = nodes[0];
+	if (nodes.length == 0) {
+		alert("请先选择一个组织成员");
+		return;
+	}
+	if (nodes[0].isParent) {
+		alert("请先选择一个子节点");
+		return;
+	}
+	$.ajax({
+		url: webUrl+currentScript+'?r=structure/edit',
+		data: {
+			type:'delete',
+			id:treeNode.id
+		},
+		type: 'POST',
+		dataType: 'text',
+		success: function(data, textStatus, jqXHR) {
+			location.href = webUrl+currentScript+'?r=structure/index';
+			return;
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert((jqXHR.responseJSON ? jqXHR.responseJSON.message : 'Error') + '\n\n' + jqXHR.status + (errorThrown ? ' ' + errorThrown : ''));
+		}
+	});
 }
 
 function structuresubmit(type){

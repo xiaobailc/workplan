@@ -49,6 +49,14 @@ class StructureController extends XAdminBase
             }else{
                 parent::error('update error',0,'',true);
             }
+        }elseif($type=='delete'){
+            $id = $this->_gets->getPost('id');
+            $structure = Structure::model()->deleteByPk($id);
+            if($structure){
+                $res = ['success'=>true];
+            }else{
+                parent::error('delete error',0,'',true);
+            }
         }else{
             parent::error('system error',0,'',true);
         }

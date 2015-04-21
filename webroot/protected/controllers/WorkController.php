@@ -138,21 +138,30 @@ class WorkController extends XAdminBase
     public function actionDailyList(){
         //$c = new CDbCriteria();
         //$c->addCondition('leader_id='.$this->_adminUserId);
-        $m = new Structure();
-        $modols = $m->findAll('user_id='.$this->_adminUserId);
-        $deep = 100;
-        $id=0;
-        foreach ($modols as $model){
-            if($model->deep < $deep){
-                $deep = $model->deep;
-                $id = $model->id;
+
+        if($this->isgroup('3')){
+            $m = new Structure();
+            $modols = $m->findAll();
+            foreach ($modols as $model){
+                $result[] = $model->attributes;
             }
-        }
-        if($id){
-            $result = [];
-            $m->getlower($id,$result);
         }else{
-            $result = [];
+            $m = new Structure();
+            $modols = $m->findAll('user_id='.$this->_adminUserId);
+            $deep = 100;
+            $id=0;
+            foreach ($modols as $model){
+                if($model->deep < $deep){
+                    $deep = $model->deep;
+                    $id = $model->id;
+                }
+            }
+            if($id){
+                $result = [];
+                $m->getlower($id,$result);
+            }else{
+                $result = [];
+            }
         }
         $output = [];
         foreach ($result as $item){
