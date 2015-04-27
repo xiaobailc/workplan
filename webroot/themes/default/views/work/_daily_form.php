@@ -10,10 +10,10 @@
     <thead>
         <tr class="active">
             <th style="width: 50px" >编号</th>
-            <th style="width: 175px" >事项</th>
+            <th style="width: 125px" >事项</th>
             <th style="" >内容</th>
             <th style="width: 125px" >结果</th>
-            <th style="width: 300px" >时间</th>
+            <th style="width: 350px" >时间</th>
             <th style="width: 100px" >操作</th>
         </tr>
     </thead>
@@ -21,9 +21,9 @@
 <?php if(!isset($report_info)):?>
         <tr>
             <th class="no">1</th>
-            <td><input type="text" name="Daily[0][type]" class="validate[required]" size="15"/></td>
+            <td><input type="text" name="Daily[0][type]" class="validate[required]" style="width: 100%"/></td>
             <td><input type="text" name="Daily[0][content]" class="validate[required]" style="width: 100%"/></td>
-            <td><input type="text" name="Daily[0][result]" class="validate[required]" size="10"/></td>
+            <td><input type="text" name="Daily[0][result]" class="validate[required]" style="width: 100%"/></td>
             <td>
             <div class="form-group">
                 <label for="timestart_0" class="control-label"></label>
@@ -48,9 +48,9 @@
 <?php foreach ($report_info as $k=>$v):?>
         <tr>
             <th class="no"><?php echo $k+1?></th>
-            <td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" size="15" value="<?php echo $v['type']?>" /></td>
-            <td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" size="60" value="<?php echo $v['content']?>" /></td>
-            <td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" size="10" value="<?php echo $v['result']?>" /></td>
+            <td><input type="text" name="Daily[<?php echo $k?>][type]" class="validate[required]" style="width: 100%" value="<?php echo $v['type']?>" /></td>
+            <td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" style="width: 100%" value="<?php echo $v['content']?>" /></td>
+            <td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" style="width: 100%" value="<?php echo $v['result']?>" /></td>
             <td>
             <div class="form-group">
                 <label for="timestart_<?php echo $k?>" class="control-label"></label>
@@ -87,9 +87,9 @@
 <table style="display:none" id="rowtemplate">
 <tr>
     <th class="no">NNN</th>
-    <td><input type="text" name="NewDaily[XXX][type]" class="validate[required]" size="15"/></td>
-    <td><input type="text" name="NewDaily[XXX][content]" class="validate[required]" size="60"/></td>
-    <td><input type="text" name="NewDaily[XXX][result]" class="validate[required]" size="10"/></td>
+    <td><input type="text" name="NewDaily[XXX][type]" class="validate[required]" style="width: 100%"/></td>
+    <td><input type="text" name="NewDaily[XXX][content]" class="validate[required]" style="width: 100%"/></td>
+    <td><input type="text" name="NewDaily[XXX][result]" class="validate[required]" style="width: 100%"/></td>
     <td>
     <div class="form-group">
         <label for="new_timestart_XXX" class="control-label"></label>
