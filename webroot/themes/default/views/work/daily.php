@@ -12,13 +12,23 @@
         </p>
         <div class="right">
 <?php echo CHtml::form('', 'get', array('class'=>'form-inline'));?>
-            <div class="datetimepicker" class="input-append date">
-                <input data-format="hh:mm" type="text" name="data_start" value="" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            <div class="form-group">
+                <label for="dtp_input3" class="control-label">开始时间</label>
+                <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
             </div>
-            <div class="datetimepicker" class="input-append date">
-                <input data-format="hh:mm" type="text" name="data_end" value="" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            <div class="form-group">
+                <label for="dtp_input3" class="control-label">结束时间</label>
+                <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
             </div>
             <input type="submit" value="搜索" class="btn btn-primary btn-sm btn-sm" />
 <?php echo CHtml::endForm();?>
@@ -29,6 +39,7 @@
 <table class="table table-bordered table-condensed">
     <thead>
         <tr class="active">
+            <th style="width: 50px" >周</th>
             <th style="width: 100px" >星期</th>
             <th style="width: 150px" >日期</th>
             <th style="width: 150px" >状态</th>
@@ -40,9 +51,11 @@
         <tr>
             <td><?php
                 $week = ['日','一','二','三','四','五','六'];
-                $num = date('w',strtotime($model->date_time));
-                echo "星期".$week[$num];
+                $num_w = date('w',strtotime($model->date_time));
+                $num_W = date('W',strtotime($model->date_time));
+                echo $num_W;
             ?></td>
+            <td><?php echo "星期".$week[$num_w];?></td>
             <td >
 <?php if($model->status==1):?>
                 <a href="<?php echo $this->createUrl('dailyinfo',array('id'=>$model->id,'auth'=>md5($model->id.$this->_xsession['_adminUserName'].'icntv')))?>"><?php echo $model->date_time;?></a>
@@ -63,10 +76,14 @@
     </tbody>
 </table>
 <script type="text/javascript">
-$(function(){
-	$('.datetimepicker').datetimepicker({
-	    pickTime: false
-	});
-});
+    $('.form_date').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+    	autoclose: 1,
+    	todayHighlight: 1,
+    	startView: 2,
+    	minView: 2,
+    	forceParse: 0
+    });
 </script>
 <?php $this->renderPartial('/_include/footer');?>
