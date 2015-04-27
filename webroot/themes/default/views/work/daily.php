@@ -11,24 +11,24 @@
 <?php endif;?>
         </p>
         <div class="right">
-<?php echo CHtml::form('', 'get', array('class'=>'form-inline'));?>
+<?php echo CHtml::form('', 'post', array('class'=>'form-inline'));?>
             <div class="form-group">
                 <label for="dtp_input3" class="control-label">开始时间</label>
-                <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
                     <input class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
                 </div>
-                <input type="hidden" id="dtp_input3" value="" /><br/>
+                <input type="hidden" id="dtp_input1" value="" name="data_start"/><br/>
             </div>
             <div class="form-group">
-                <label for="dtp_input3" class="control-label">结束时间</label>
+                <label for="dtp_input3" class="control-labe2">结束时间</label>
                 <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                     <input class="form-control" size="16" type="text" value="" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
                 </div>
-                <input type="hidden" id="dtp_input3" value="" /><br/>
+                <input type="hidden" id="dtp_input2" value="" name="data_end"/><br/>
             </div>
             <input type="submit" value="搜索" class="btn btn-primary btn-sm btn-sm" />
 <?php echo CHtml::endForm();?>

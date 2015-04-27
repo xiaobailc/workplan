@@ -4,7 +4,7 @@
 }
 </style>
 <h3><?php echo $date_time;?>日报</h3>
-<?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform', 'enctype'=>'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','class'=>'form-inline', 'enctype'=>'multipart/form-data'))); ?>
 <input type="hidden" value="<?php echo $date_time;?>" name="time_date"/>
 <table class="table table-bordered table-condensed">
     <thead>
@@ -13,7 +13,7 @@
             <th style="width: 175px" >事项</th>
             <th style="" >内容</th>
             <th style="width: 125px" >结果</th>
-            <th style="width: 250px" >时间</th>
+            <th style="width: 300px" >时间</th>
             <th style="width: 100px" >操作</th>
         </tr>
     </thead>
@@ -22,16 +22,22 @@
         <tr>
             <th class="no">1</th>
             <td><input type="text" name="Daily[0][type]" class="validate[required]" size="15"/></td>
-            <td><input type="text" name="Daily[0][content]" class="validate[required]" size="60"/></td>
+            <td><input type="text" name="Daily[0][content]" class="validate[required]" style="width: 100%"/></td>
             <td><input type="text" name="Daily[0][result]" class="validate[required]" size="10"/></td>
             <td>
-            <div class="datetimepicker" class="input-append date">
-                <input data-format="hh:mm" type="text" name="Daily[0][timestart]" class="validate[required]" size="5" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span> -
+            <div class="form-group">
+                <label for="timestart_0" class="control-label"></label>
+                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timestart_0" data-link-format="hh:ii">
+                    <input class="form-control validate[required]" type="text" size="5"  value="" id="timestart_0" name="Daily[0][timestart]" readonly>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                </div> —
             </div>
-            <div class="datetimepicker" class="input-append date">
-                - <input data-format="hh:mm" type="text" name="Daily[0][timeend]" class="validate[required]" size="5" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            <div class="form-group">
+                <label for="timeend_0" class="control-label"></label>
+                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timeend_0" data-link-format="hh:ii">
+                    <input class="form-control validate[required]" type="text" size="5"  value="" id="timeend_0" name="Daily[0][timeend]" readonly>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                </div>
             </div>
             </td>
             <td class="group-btn">
@@ -46,13 +52,19 @@
             <td><input type="text" name="Daily[<?php echo $k?>][content]" class="validate[required]" size="60" value="<?php echo $v['content']?>" /></td>
             <td><input type="text" name="Daily[<?php echo $k?>][result]" class="validate[required]" size="10" value="<?php echo $v['result']?>" /></td>
             <td>
-            <div class="datetimepicker" class="input-append date">
-                <input data-format="hh:mm" type="text" name="Daily[<?php echo $k?>][timestart]" class="validate[required]" size="5" value="<?php echo $v['timestart']?>" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span> -
+            <div class="form-group">
+                <label for="timestart_<?php echo $k?>" class="control-label"></label>
+                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timestart_<?php echo $k?>" data-link-format="hh:ii">
+                    <input class="form-control validate[required]" type="text" size="5"  value="<?php echo $v['timestart']?>" id="timestart_0" name="Daily[<?php echo $k?>][timestart]" readonly>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                </div> —
             </div>
-            <div class="datetimepicker" class="input-append date">
-                - <input data-format="hh:mm" type="text" name="Daily[<?php echo $k?>][timeend]" class="validate[required]" size="5" value="<?php echo $v['timeend']?>" />
-                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            <div class="form-group">
+                <label for="timeend_<?php echo $k?>" class="control-label"></label>
+                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timeend_0" data-link-format="hh:ii">
+                    <input class="form-control validate[required]" type="text" size="5"  value="<?php echo $v['timeend']?>" id="timeend_<?php echo $k?>" name="Daily[<?php echo $k?>][timeend]" readonly>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+                </div>
             </div>
             </td>
             <td class="group-btn">
@@ -79,13 +91,19 @@
     <td><input type="text" name="NewDaily[XXX][content]" class="validate[required]" size="60"/></td>
     <td><input type="text" name="NewDaily[XXX][result]" class="validate[required]" size="10"/></td>
     <td>
-    <div class="datetimepicker" class="input-append date">
-        <input data-format="hh:mm" type="text" name="NewDaily[XXX][timestart]" class="validate[required]" size="5" />
-        <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span> -
+    <div class="form-group">
+        <label for="new_timestart_XXX" class="control-label"></label>
+        <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="new_timestart_XXX" data-link-format="hh:ii">
+            <input class="form-control validate[required]" type="text" size="5" id="new_timestart_XXX" name="NewDaily[XXX][timestart]" readonly>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+        </div> —
     </div>
-    <div class="datetimepicker" class="input-append date">
-        - <input data-format="hh:mm" type="text" name="NewDaily[XXX][timeend]" class="validate[required]" size="5" />
-        <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+    <div class="form-group">
+        <label for="new_timeend_XXX" class="control-label"></label>
+        <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="new_timeend_XXX" data-link-format="hh:ii">
+            <input class="form-control validate[required]" type="text" size="5" id="new_timeend_XXX" name="NewDaily[XXX][timeend]" readonly>
+            <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
+        </div>
     </div>
     </td>
     <td class="group-btn">
@@ -96,13 +114,20 @@
 
 
 <script type="text/javascript">
+$('.form_time').datetimepicker({
+    language:  'fr',
+    weekStart: 1,
+    todayBtn:  1,
+	autoclose: 1,
+	todayHighlight: 1,
+	startView: 1,
+	minView: 0,
+	maxView: 1,
+	forceParse: 0
+});
 $(function(){
     var menu_index = 0;
     $("#xform").validationEngine();
-    $('.datetimepicker').datetimepicker({
-      pickDate: false,
-      pickSeconds: false
-    });
     $('#addone').click(function(){
         var now_no = 0;
         $('.table .no').each(function(){
@@ -115,9 +140,16 @@ $(function(){
         dom = dom.replace(/NNN/g,now_no);
         //alert(dom);return;
         $('#submit').before(dom);
-        $('.datetimepicker').datetimepicker({
-            pickDate: false,
-            pickSeconds: false
+        $('.form_time').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 1,
+            minView: 0,
+            maxView: 1,
+            forceParse: 0
         });
     });
     $('.datetimepicker').on('changeDate', function(e) {
