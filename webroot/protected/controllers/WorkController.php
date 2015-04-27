@@ -19,9 +19,13 @@ class WorkController extends XAdminBase
         $daily = new Daily();
         $criteria = new CDbCriteria();
         $criteria->addCondition('user_id='.$id);
-        $keyword = $this->_gets->getQuery('keyword');
-        if($keyword){
-            $criteria->addSearchCondition('report_info', $keyword);
+        $date_start = $this->_gets->getPost('date_start');
+        $date_end = $this->_gets->getPost('date_end');
+        if($date_start){
+            $criteria->addCondition('date_time>=\''.$date_start.'\'');
+        }
+        if($date_end){
+            $criteria->addCondition('date_time<=\''.$date_end.'\'');
         }
         $criteria->order='date_time desc';
         $count = $daily->count($criteria);

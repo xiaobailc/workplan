@@ -19,7 +19,7 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
                 </div>
-                <input type="hidden" id="dtp_input1" value="" name="data_start"/><br/>
+                <input type="hidden" id="dtp_input1" value="" name="date_start"/><br/>
             </div>
             <div class="form-group">
                 <label for="dtp_input3" class="control-labe2">结束时间</label>
@@ -28,7 +28,7 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove fa fa-times"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar fa fa-calendar"></span></span>
                 </div>
-                <input type="hidden" id="dtp_input2" value="" name="data_end"/><br/>
+                <input type="hidden" id="dtp_input2" value="" name="date_end"/><br/>
             </div>
             <input type="submit" value="搜索" class="btn btn-primary btn-sm btn-sm" />
 <?php echo CHtml::endForm();?>
