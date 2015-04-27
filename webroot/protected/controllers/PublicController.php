@@ -29,7 +29,7 @@ class PublicController extends Controller
                 } elseif (! $model->validatePassword($data->password)) {
                     $model->addError('password', '密码不正确');
                     parent::_adminLogger(array ('catalog' => 'login' , 'intro' => '登录失败，密码不正确:' . $model->username. '，使用密码：'.$model->password , 'user_id' => 0 ));
-                } elseif ($data->group_id == 2) {
+                } elseif ($data->status_is == 'N') {
                     $model->addError('username', '用户已经锁定，请联系管理');
                 } else {
                     $session = new XSession();

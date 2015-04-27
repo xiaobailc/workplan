@@ -29,6 +29,10 @@
         <dd> <?php echo $form->textField($model,'username', array('class'=>'input-password')); ?> <?php echo $form->error($model,'username'); ?> </dd>
         <dt>密&nbsp;&nbsp;&nbsp;&nbsp;码</dt>
         <dd> <?php echo $form->passwordField($model,'password', array('class'=>'input-password')); ?> <?php echo $form->error($model,'password'); ?> </dd>
+        <dt>验证码</dt>
+        <dd> <?php echo $form->textField($model,'captcha', array('class'=>'input-password verify-code')); ?>
+          <?php $this->widget ( 'CCaptcha', array ('showRefreshButton' => true, 'clickableImage' => true, 'buttonType' => 'link', 'buttonLabel' => '换一张', 'imageOptions' => array ('alt' => '点击换图', 'align'=>'absmiddle'  ) ) );?>
+          <?php echo $form->error($model,'captcha'); ?> </dd>
         <dd>
           <input type="submit" name="login" class="input-login" value=""/>
           <input type="reset" name="login" class="input-reset" value=""/>

@@ -29,6 +29,7 @@ class Admin extends XBaseModel
 			array('username, password', 'required', 'on'=>'create'),
 			array('username, password', 'required', 'on'=>'login'),
 			array('username', 'unique', 'on'=>'create'),
+		    array('captcha', 'captcha', 'allowEmpty'=>!extension_loaded('gd'), 'on'=>'login'),
 			array('username, password', 'required'),
 			array('last_login_time, create_time', 'numerical', 'integerOnly'=>true),
 			array('username', 'length', 'max'=>50),

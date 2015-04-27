@@ -12,7 +12,14 @@
         </p>
         <div class="right">
 <?php echo CHtml::form('', 'get', array('class'=>'form-inline'));?>
-            <?php echo CHtml::textField('keyword',$keyword,array('placeholder'=>'请输关键词','class'=>'form-control input-sm'));?>
+            <div class="datetimepicker" class="input-append date">
+                <input data-format="hh:mm" type="text" name="data_start" value="" />
+                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            </div>
+            <div class="datetimepicker" class="input-append date">
+                <input data-format="hh:mm" type="text" name="data_end" value="" />
+                <span class="add-on"><i data-time-icon="fa fa-clock-o" data-date-icon="fa fa-clock-o"></i></span>
+            </div>
             <input type="submit" value="搜索" class="btn btn-primary btn-sm btn-sm" />
 <?php echo CHtml::endForm();?>
         </div>
@@ -55,4 +62,11 @@
 <?php endforeach;?>
     </tbody>
 </table>
+<script type="text/javascript">
+$(function(){
+	$('.datetimepicker').datetimepicker({
+	    pickTime: false
+	});
+});
+</script>
 <?php $this->renderPartial('/_include/footer');?>

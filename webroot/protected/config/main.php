@@ -35,7 +35,7 @@ return array(
 			'class' => 'CFileCache',
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=workplan',
+			'connectionString' => 'mysql:host=192.168.75.19;dbname=workplan',
 			'emulatePrepare' => true,
 			'enableParamLogging' => true,
 			'enableProfiling'=>true,
