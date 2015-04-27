@@ -55,13 +55,13 @@
             <div class="form-group">
                 <label for="timestart_<?php echo $k?>" class="control-label"></label>
                 <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timestart_<?php echo $k?>" data-link-format="hh:ii">
-                    <input class="form-control validate[required]" type="text" size="5"  value="<?php echo $v['timestart']?>" id="timestart_0" name="Daily[<?php echo $k?>][timestart]" readonly>
+                    <input class="form-control validate[required]" type="text" size="5"  value="<?php echo $v['timestart']?>" id="timestart_<?php echo $k?>" name="Daily[<?php echo $k?>][timestart]" readonly>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
                 </div> —
             </div>
             <div class="form-group">
                 <label for="timeend_<?php echo $k?>" class="control-label"></label>
-                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timeend_0" data-link-format="hh:ii">
+                <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="timeend_<?php echo $k?>" data-link-format="hh:ii">
                     <input class="form-control validate[required]" type="text" size="5"  value="<?php echo $v['timeend']?>" id="timeend_<?php echo $k?>" name="Daily[<?php echo $k?>][timeend]" readonly>
                     <span class="input-group-addon"><i class="glyphicon glyphicon-time fa fa-clock-o"></i></span>
                 </div>
