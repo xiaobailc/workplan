@@ -283,4 +283,24 @@ class WorkController extends XAdminBase
         $auth = $this->_gets->getQuery('auth',false);
         $this->render('plan',array('id'=>$id,'auth'=>$auth));
     }
+    
+    public function actionCount(){
+        $info_arr = Yii::app()->cache->get('daily_report_count');
+        if(!$info_arr){
+            Yii::app()->cache->delete('daily_report_count');
+            $models = Admin::model()->findAll();
+            $info_arr = [];
+            foreach($models as $key=>$model){
+                $info = $model->attributes;
+                $info['count'] = Daily::model()->count("user_id='$model->id'");
+                $info_arr[$key] = $info;
+                $count[$key] = $info['count'];
+                $username[$key] = $info['username'];
+            }
+            array_multisort($count,SORT_DESC,$username,$info_arr);
+            Yii::app()->cache->set('daily_report_count',$info_arr,3600);
+        }
+        //print_r($info_arr);exit;
+        $this->render('count',array('infos'=>$info_arr));
+    }
 }

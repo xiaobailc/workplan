@@ -115,7 +115,6 @@
 
 <script type="text/javascript">
 $('.form_time').datetimepicker({
-    language:  'fr',
     weekStart: 1,
     todayBtn:  1,
 	autoclose: 1,
@@ -141,7 +140,6 @@ $(function(){
         //alert(dom);return;
         $('#submit').before(dom);
         $('.form_time').datetimepicker({
-            language:  'fr',
             weekStart: 1,
             todayBtn:  1,
             autoclose: 1,
