@@ -4,7 +4,7 @@
 }
 </style>
 <h3><?php echo $date_time;?>日报</h3>
-<?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','class'=>'form-inline', 'enctype'=>'multipart/form-data'))); ?>
+<?php $form = $this->beginWidget('CActiveForm',array('id'=>'xform','htmlOptions'=>array('name'=>'xform','class'=>'form-inline', 'enctype'=>'multipart/form-data','onkeydown'=>'if(event.keyCode==13) return false;'))); ?>
 <input type="hidden" value="<?php echo $date_time;?>" name="time_date"/>
 <table class="table table-bordered table-condensed">
     <thead>
@@ -41,7 +41,7 @@
             </div>
             </td>
             <td class="group-btn">
-                <button class="btn btn-danger btn-xs confirmSubmit" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
+                <button type="button" class="btn btn-danger btn-xs" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
             </td>
         </tr>
 <?php else:?>
@@ -68,7 +68,7 @@
             </div>
             </td>
             <td class="group-btn">
-                <button class="btn btn-danger btn-xs confirmSubmit" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
+                <button type="button" class="btn btn-danger btn-xs" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
             </td>
         </tr>
 <?php endforeach;?>
@@ -107,7 +107,7 @@
     </div>
     </td>
     <td class="group-btn">
-        <button class="btn btn-danger btn-xs confirmSubmit" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
+        <button type="button" class="btn btn-danger btn-xs" onclick="removeone(this)"><i class="fa fa-trash-o"></i> 删除</button>
     </td>
 </tr>
 </table>
@@ -158,13 +158,14 @@ $(function(){
 });
 
 function removeone(e){
-    //alert(1);return;
-    $(e).parent().parent().nextAll().each(function(){
-        if($(this).find('.no').length!=0){
-            var temp_no = $(this).find('.no').text();
-            $(this).find('.no').text(parseInt(temp_no)-1);
-        }
-    });
-    $(e).parent().parent().remove();
+    if(confirm('本操作不可恢复，确定继续？')){
+        $(e).parent().parent().nextAll().each(function(){
+            if($(this).find('.no').length!=0){
+                var temp_no = $(this).find('.no').text();
+                $(this).find('.no').text(parseInt(temp_no)-1);
+            }
+        });
+        $(e).parent().parent().remove();
+    }
 }
 </script>
