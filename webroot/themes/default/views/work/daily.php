@@ -73,6 +73,13 @@
             </td>
         </tr>
 <?php endforeach;?>
+        <tr>
+            <td colspan="5">
+            <div class="cuspages right">
+                <?php $this->widget('CLinkPager',array('pages'=>$pagebar));?>
+            </div>
+            </td>
+        </tr>
     </tbody>
 </table>
 <script type="text/javascript">
