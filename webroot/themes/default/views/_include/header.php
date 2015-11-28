@@ -19,7 +19,7 @@
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/admin/js/base.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/bootstrap/js/bootstrap.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/validationEngine/jquery.validationEngine.min.js" ></script>
-<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/ztree/js/jquery.ztree.core-3.5.js" ></script>
+<script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/ztree/js/jquery.ztree.all-3.5.min.js" ></script>
 <script type="text/javascript" src="<?php echo $this->_baseUrl?>/static/lib/datetimepicker/js/bootstrap-datetimepicker.min.js?r=<?php echo time()?>" ></script>
 </head>
 <body>

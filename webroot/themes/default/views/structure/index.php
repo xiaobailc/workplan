@@ -90,6 +90,20 @@ var setting = {
 		simpleData: {
 			enable: true
 		}
+	},
+	edit:{
+		drag:{
+			inner:true,
+			prev:false,
+			next:false,
+			isCopy:false
+		},
+		enable: true,
+		showRemoveBtn: false,
+		showRenameBtn: false
+	},
+	callback: {
+		onDrop: onDrop
 	}
 };
 var zNodes = <?php echo $zNodes;?>;
@@ -98,6 +112,29 @@ $(document).ready(function(){
 	$.fn.zTree.init($("#treeDemo"), setting, zNodes);
 	$.fn.zTree.getZTreeObj("treeDemo").expandAll(true);
 });
+
+function onDrop(event, treeId, treeNodes, targetNode, moveType, isCopy) {
+ 	$.ajax({
+		url: webUrl+currentScript+'?r=structure/edit',
+		data: {
+			type:'edit',
+			id:treeNodes[0].id,
+			user_id:null,
+			user_name:null,
+			pid:targetNode.id
+		},
+		type: 'POST',
+		dataType: 'text',
+		success: function(data, textStatus, jqXHR) {
+			$('#myModal').modal('hide');
+			//location.href = webUrl+currentScript+'?r=structure/index';
+			return;
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+			alert((jqXHR.responseJSON ? jqXHR.responseJSON.message : 'Error') + '\n\n' + jqXHR.status + (errorThrown ? ' ' + errorThrown : ''));
+		}
+	}); 
+}
 
 function expandNode(type) {
 	var zTree = $.fn.zTree.getZTreeObj("treeDemo");
